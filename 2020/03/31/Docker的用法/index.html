@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="java technology blog sharing" />
+    
+    <title>
+      Docker怎么玩~ - Goblin&#39; Blogs
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Goblin' Blogs" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-Docker基础篇"><span class="toc-text">一. Docker基础篇:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-Docker高级篇"><span class="toc-text">二. Docker高级篇</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/friends" class="">
+          Friends
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Goblin</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Goblin</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/friends" class="">
+            Friends
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shitianshuai1111" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/yue-xia-hun-xi" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/5670783132" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+        <div class="top">
+          <div class="iconfont icon-zuirehotxiankuang animated infinite heartBeat"></div>
+        </div>
+      
+      <div class="title">Docker怎么玩~</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/03/31</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2020/03/31/Docker%E7%9A%84%E7%94%A8%E6%B3%95/" data-flag-title="Docker怎么玩~">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/干货">干货</a>
+                  
+                
+                  
+                    <a href="/tags/笔记">笔记</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h1 id="一-Docker基础篇">一. Docker基础篇:<a class="post-anchor" href="#一-Docker基础篇"></a></h1><p>Docker的三大要素: </p>
+<ol>
+<li>镜像-只读的原本 类比java的类</li>
+<li>容器-一个个在Docker中跑的程序(nginx, redis等)  类比java类创建出的实例</li>
+<li>仓库-可以把打包好的镜像上传到DockerHub, 运维可以直接下载(国外的网站太慢, 用不到)</li>
+</ol>
+<p>虚拟机和Docker的区别: </p>
+<p>CentOS/ Ubuntu基础镜像仅170MB 而虚拟机的镜像系统要4个G(同时模拟了硬件)</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">docker(容器虚拟化技术)</th>
+<th align="left">虚拟机技术</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">操作系统</td>
+<td align="left">与宿主机共享, docker引擎调节</td>
+<td align="left">宿主机os上运行虚拟机os</td>
+</tr>
+<tr>
+<td align="left">储存大小</td>
+<td align="left">镜像小, 便于传输(Mb)</td>
+<td align="left">镜像大(G)</td>
+</tr>
+<tr>
+<td align="left">运行性能</td>
+<td align="left">几乎无额外性能损失</td>
+<td align="left">操作系统消耗额外cpu</td>
+</tr>
+<tr>
+<td align="left">移植性</td>
+<td align="left">轻便灵活</td>
+<td align="left">与虚拟化技术耦合</td>
+</tr>
+<tr>
+<td align="left">硬件亲和性</td>
+<td align="left">面向软件开发</td>
+<td align="left">面向运维</td>
+</tr>
+<tr>
+<td align="left">部署速度</td>
+<td align="left">秒级</td>
+<td align="left">分钟级(10s+)</td>
+</tr>
+</tbody></table>
+<p>开发/运维: DevOps 一次构建, 随处运行</p>
+<p>Docker的架构图: </p>
+<p><a href="/.io//StCgiabaolA4QS7F.png" data-caption="图片" data-fancybox="images"><img src="/.io//StCgiabaolA4QS7F.png" alt="图片"></a></p>
+<p>从远程Registry拉取到本地, 就是一个Images镜像, 这个镜像的实例就是一个Containers容器</p>
+<p>镜像就是模板, 容器就是这个镜像的实例. 一个镜像可以创建很多容器. 可以把容器看成一个简易版的Linux环境, 和运行在其中的应用程序. 仓库是集中存放镜像文件的场所</p>
+<p>Repository仓库和Registry仓库注册服务器是有区别的.</p>
+<p>仓库注册服务器上往往存放着多个仓库, 每个仓库中又包含了多个镜像, 每个镜像有不同的标签(tag)</p>
+<p>仓库又分为公开仓库和私有仓库. 两种形式, 世界最大公开仓库DockerHub, 国内的公开仓库 阿里云.</p>
+<p><strong>Docker安装的官方文档: 安装就看他</strong></p>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+<p><strong>阿里云镜像加速的配置文档: 配置阿里仓库就看他</strong></p>
+<p><a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors" target="_blank" rel="noopener">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
+<p>专属加速地址</p>
+<figure class="highlight html"><table><tbody><tr><td class="code"><pre><code class="hljs html">https://ld9eyi9w.mirror.aliyuncs.com<br></code></pre></td></tr></tbody></table></figure>
+
+<p>Docker指令之helloworld:  </p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">docker run hello-world<br>先在本地找, hello-world的镜像 <br>->没有, 去远程拉取pulling<br></code></pre></td></tr></tbody></table></figure>
+<p><a href="/.io//TokXXDm7j6oRpLIt.png" data-caption="图片" data-fancybox="images"><img src="/.io//TokXXDm7j6oRpLIt.png" alt="图片"></a></p>
+<p>流程图: </p>
+<p><a href="/.io//0vsvbOntsqMEu7sb.jpeg" data-caption="图片" data-fancybox="images"><img src="/.io//0vsvbOntsqMEu7sb.jpeg" alt="图片"></a></p>
+<p>docker命令: </p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1. </span>docker -version 版本信息<br><span class="hljs-bullet">2. </span>docker info     详细信息<br><span class="hljs-bullet">3. </span>docker --help   常用命令<br><span class="hljs-bullet">4. </span>docker images   当前主机能运行的镜像模板<br><span class="hljs-code">    REPOSITORY: 镜像的仓库源 </span><br><span class="hljs-code">    TAG: 版本</span><br><span class="hljs-code">    IMAGE ID: 镜像的唯一ID</span><br><span class="hljs-code">    CREATED: 创建时间</span><br><span class="hljs-code">    SIZE : 大小</span><br><span class="hljs-bullet">5. </span>docker search   去dockerhub查找(配置了镜像也是从dockerhub查询, 只是下载的时候去阿里云下载而已)<br><span class="hljs-bullet">6. </span>docker pull     下载镜像<br><span class="hljs-bullet">7. </span>docker rmi -f 镜像名 镜像名 镜像名...  删除镜像<br><span class="hljs-code">    清盘删除: docker rmi -f $(docker images -qa)  </span><br><span class="hljs-code">    $() 相当于 取出后面的docker images -qa的结果当做参数</span><br></code></pre></td></tr></tbody></table></figure>
+<p><a href="/.io//NgJsNlWUA6owVhw1.png" data-caption="图片" data-fancybox="images"><img src="/.io//NgJsNlWUA6owVhw1.png" alt="图片"></a></p>
+<p>tomcat为什么这么大呢?</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">8. </span>docker run -it 470671670cac<br></code></pre></td></tr></tbody></table></figure>
+<p><a href="/.io//Ychszke9rhoU55LW.png" data-caption="图片" data-fancybox="images"><img src="/.io//Ychszke9rhoU55LW.png" alt="图片"></a></p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">9. </span>docker ps     列出所有运行的容器<br><span class="hljs-bullet">10. </span>exit         关闭容器并退出命令行<br><span class="hljs-code">    ctrl + p 再按 ctrl + q   不关闭容器, 先离开一会终端</span><br><span class="hljs-bullet">11. </span>docker stop 停止容器 温柔关闭<br><span class="hljs-bullet">12. </span>docker kill 直接杀死容器<br><span class="hljs-bullet">13. </span>docker rm [-f] 容器号  删除容器 -f是强制删除(可删除正在运行的容器)<br><span class="hljs-code">    docker rm -f $(docker ps -qa)   批量删除</span><br>  或docker ps -qa | xargs docker rm <br><span class="hljs-code">    linux命令, 管道符左边的结果当做参数传入右边的命令</span><br></code></pre></td></tr></tbody></table></figure>
+
+
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">docker run -d : 后台守护线程形式运行应用<br>docker run -d centos /bin/sh -c "while true;do echo hello zzyy;sleep 2; done"<br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>使用镜像centos以后台模式启动一个容器:<br>$ docker run -d centos<br>然后<br>$ docker ps -a 进行查看, 会发现容器已经退出<br>因为:<br><strong>Docker容器后台运行, 就必须有一个前台进程, 否则会自动退出</strong><br>这个是Docker的机制问题:<br>比如nginx 我们配置启动服务只需要启动响应的service即可,  例如service nginx start<br>但是这样 nginx为后台进程模式运行, 就会docker前台没有对应运行的应用.<br>这样容器后台一启动, 就会立即自杀, 因为觉得自己没事做了.<br>所以: <strong>要将后台运行的程序以前台进程的形式运行</strong></p>
+</blockquote>
+<blockquote>
+<p>docker run -it centos /bin/bash 后面的 bin/bash的作用</p>
+<p>(<a href="https://www.cnblogs.com/Guhongying/p/10894434.html" target="_blank" rel="noopener">https://www.cnblogs.com/Guhongying/p/10894434.html</a>)</p>
+</blockquote>
+<p>首先，docker run -it centos 的意思是，为centos这个镜像创建一个容器， -i和-t这两个参数的作用是，为该docker创建一个伪终端，这样就可以进入到容器的交互模式？（也就是直接进入到容器里面）后面的/bin/bash的作用是表示载入容器后运行bash ,docker中必须要保持一个进程的运行，要不然整个容器启动后就会马上kill itself，这样当你使用docker ps 查看启动的容器时，就会发现你刚刚创建的那个容器并不在已启动的容器队列中。<em>这个/bin/bash就表示启动容器后启动bash。</em></p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">14. </span>docker logs [参数] 容器id   查看日志<br><span class="hljs-code">    -f               跟随最新日志打印</span><br><span class="hljs-code">    -t               加入时间戳</span><br><span class="hljs-code">    --tail           显示最后多少条</span><br>eg: docker logs -t -f --tail 3 7e0b062af691<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">15. </span>docker top  容器id       查看容器内运行的进程<br><span class="hljs-bullet">16. </span>docker inspect  容器id   查看容器的细节<br></code></pre></td></tr></tbody></table></figure>
+<p>比如: </p>
+<figure class="highlight json"><table><tbody><tr><td class="code"><pre><code class="hljs json">[<br>    {<br>        <span class="hljs-attr">"Id"</span>: <span class="hljs-string">"7e0b062af6916144a33118a1"</span>,<br>        <span class="hljs-attr">"Created"</span>: <span class="hljs-string">"2020-03-27T05:21:24.424453733Z"</span>,<br>        <span class="hljs-attr">"Path"</span>: <span class="hljs-string">"/bin/sh"</span>,<br>        <span class="hljs-attr">"Args"</span>: [<br>            <span class="hljs-string">"-c"</span>,<br>            <span class="hljs-string">"while true;do echo hello zzyy;sleep 2; done"</span><br>        ],<br>        <span class="hljs-attr">"State"</span>: {<br>            <span class="hljs-attr">"Status"</span>: <span class="hljs-string">"running"</span>,<br>            <span class="hljs-attr">"Running"</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">"Paused"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"Restarting"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"OOMKilled"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"Dead"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"Pid"</span>: <span class="hljs-number">16750</span>,<br>            <span class="hljs-attr">"ExitCode"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"Error"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"StartedAt"</span>: <span class="hljs-string">"2020-03-27T05:21:24.799995316Z"</span>,<br>            <span class="hljs-attr">"FinishedAt"</span>: <span class="hljs-string">"0001-01-01T00:00:00Z"</span><br>        },<br>        <span class="hljs-attr">"Image"</span>: <span class="hljs-string">"sha256:..."</span>,<br>        <span class="hljs-attr">"ResolvConfPath"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"HostnamePath"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"HostsPath"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"LogPath"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"Name"</span>: <span class="hljs-string">"/crazy_fermi"</span>,<br>        <span class="hljs-attr">"RestartCount"</span>: <span class="hljs-number">0</span>,<br>        <span class="hljs-attr">"Driver"</span>: <span class="hljs-string">"overlay2"</span>,<br>        <span class="hljs-attr">"Platform"</span>: <span class="hljs-string">"linux"</span>,<br>        <span class="hljs-attr">"MountLabel"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"ProcessLabel"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"AppArmorProfile"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"ExecIDs"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"HostConfig"</span>: {<br>            <span class="hljs-attr">"Binds"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"ContainerIDFile"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"LogConfig"</span>: {<br>                <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"json-file"</span>,<br>                <span class="hljs-attr">"Config"</span>: {}<br>            },<br>            <span class="hljs-attr">"NetworkMode"</span>: <span class="hljs-string">"default"</span>,<br>            <span class="hljs-attr">"PortBindings"</span>: {},<br>            <span class="hljs-attr">"RestartPolicy"</span>: {<br>                <span class="hljs-attr">"Name"</span>: <span class="hljs-string">"no"</span>,<br>                <span class="hljs-attr">"MaximumRetryCount"</span>: <span class="hljs-number">0</span><br>            },<br>            <span class="hljs-attr">"AutoRemove"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"VolumeDriver"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"VolumesFrom"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"CapAdd"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"CapDrop"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Capabilities"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Dns"</span>: [],<br>            <span class="hljs-attr">"DnsOptions"</span>: [],<br>            <span class="hljs-attr">"DnsSearch"</span>: [],<br>            <span class="hljs-attr">"ExtraHosts"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"GroupAdd"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"IpcMode"</span>: <span class="hljs-string">"private"</span>,<br>            <span class="hljs-attr">"Cgroup"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"Links"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"OomScoreAdj"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"PidMode"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"Privileged"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"PublishAllPorts"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"ReadonlyRootfs"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"SecurityOpt"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"UTSMode"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"UsernsMode"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"ShmSize"</span>: <span class="hljs-number">67108864</span>,<br>            <span class="hljs-attr">"Runtime"</span>: <span class="hljs-string">"runc"</span>,<br>            <span class="hljs-attr">"ConsoleSize"</span>: [<br>                <span class="hljs-number">0</span>,<br>                <span class="hljs-number">0</span><br>            ],<br>            <span class="hljs-attr">"Isolation"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"CpuShares"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"Memory"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"NanoCpus"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"CgroupParent"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"BlkioWeight"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"BlkioWeightDevice"</span>: [],<br>            <span class="hljs-attr">"BlkioDeviceReadBps"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"BlkioDeviceWriteBps"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"BlkioDeviceReadIOps"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"BlkioDeviceWriteIOps"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"CpuPeriod"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"CpuQuota"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"CpuRealtimePeriod"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"CpuRealtimeRuntime"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"CpusetCpus"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"CpusetMems"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"Devices"</span>: [],<br>            <span class="hljs-attr">"DeviceCgroupRules"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"DeviceRequests"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"KernelMemory"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"KernelMemoryTCP"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"MemoryReservation"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"MemorySwap"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"MemorySwappiness"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"OomKillDisable"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"PidsLimit"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Ulimits"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"CpuCount"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"CpuPercent"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"IOMaximumIOps"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"IOMaximumBandwidth"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"MaskedPaths"</span>: [<br>                <span class="hljs-string">"/proc/asound"</span>,<br>                <span class="hljs-string">"/proc/acpi"</span>,<br>                <span class="hljs-string">"/proc/kcore"</span>,<br>                <span class="hljs-string">"/proc/keys"</span>,<br>                <span class="hljs-string">"/proc/latency_stats"</span>,<br>                <span class="hljs-string">"/proc/timer_list"</span>,<br>                <span class="hljs-string">"/proc/timer_stats"</span>,<br>                <span class="hljs-string">"/proc/sched_debug"</span>,<br>                <span class="hljs-string">"/proc/scsi"</span>,<br>                <span class="hljs-string">"/sys/firmware"</span><br>            ],<br>            <span class="hljs-attr">"ReadonlyPaths"</span>: [<br>                <span class="hljs-string">"/proc/bus"</span>,<br>                <span class="hljs-string">"/proc/fs"</span>,<br>                <span class="hljs-string">"/proc/irq"</span>,<br>                <span class="hljs-string">"/proc/sys"</span>,<br>                <span class="hljs-string">"/proc/sysrq-trigger"</span><br>            ]<br>        },<br>        <span class="hljs-attr">"GraphDriver"</span>: {<br>            <span class="hljs-attr">"Data"</span>: {<br>                <span class="hljs-attr">"LowerDir"</span>: <span class="hljs-string">""</span>,<br>                <span class="hljs-attr">"MergedDir"</span>: <span class="hljs-string">""</span>,<br>                <span class="hljs-attr">"UpperDir"</span>: <span class="hljs-string">""</span>,<br>                <span class="hljs-attr">"WorkDir"</span>: <span class="hljs-string">""</span><br>            },<br>            <span class="hljs-attr">"Name"</span>: <span class="hljs-string">"overlay2"</span><br>        },<br>        <span class="hljs-attr">"Mounts"</span>: [],<br>        <span class="hljs-attr">"Config"</span>: {<br>            <span class="hljs-attr">"Hostname"</span>: <span class="hljs-string">"7e0b062af691"</span>,<br>            <span class="hljs-attr">"Domainname"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"User"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"AttachStdin"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"AttachStdout"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"AttachStderr"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"Tty"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"OpenStdin"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"StdinOnce"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"Env"</span>: [<br>                <span class="hljs-string">"PATH=/usr/local/"</span><br>            ],<br>            <span class="hljs-attr">"Cmd"</span>: [<br>                <span class="hljs-string">"/bin/sh"</span>,<br>                <span class="hljs-string">"-c"</span>,<br>                <span class="hljs-string">"while true;do ech"</span><br>            ],<br>            <span class="hljs-attr">"Image"</span>: <span class="hljs-string">"centos"</span>,<br>            <span class="hljs-attr">"Volumes"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"WorkingDir"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"Entrypoint"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"OnBuild"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Labels"</span>: {<br>                <span class="hljs-attr">"org.label-schema.build-date"</span>: <span class="hljs-string">"20200114"</span>,<br>                <span class="hljs-attr">"org.label-schema.license"</span>: <span class="hljs-string">"GPLv2"</span>,<br>                <span class="hljs-attr">"org.label-schema.name"</span>: <span class="hljs-string">"CentOS Base Image"</span>,<br>                <span class="hljs-attr">"org.label-schema.schema-version"</span>: <span class="hljs-string">"1.0"</span>,<br>                <span class="hljs-attr">"org.label-schema.vendor"</span>: <span class="hljs-string">"CentOS"</span>,<br>                <span class="hljs-attr">"org.opencontainers.image.created"</span>: <span class="hljs-string">"2020-01-"</span>,<br>                <span class="hljs-attr">"org.opencontainers.image.licenses"</span>: <span class="hljs-string">"GPL-2.0-only"</span>,<br>                <span class="hljs-attr">"org.opencontainers.image.title"</span>: <span class="hljs-string">"CentOS Base Image"</span>,<br>                <span class="hljs-attr">"org.opencontainers.image.vendor"</span>: <span class="hljs-string">"CentOS"</span><br>            }<br>        },<br>        <span class="hljs-attr">"NetworkSettings"</span>: {<br>            <span class="hljs-attr">"Bridge"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"SandboxID"</span>: <span class="hljs-string">"3459bdd5aa27c479a87"</span>,<br>            <span class="hljs-attr">"HairpinMode"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"LinkLocalIPv6Address"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"LinkLocalIPv6PrefixLen"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"Ports"</span>: {},<br>            <span class="hljs-attr">"SandboxKey"</span>: <span class="hljs-string">"/var/run/docker/netns/3459bdd5aa27"</span>,<br>            <span class="hljs-attr">"SecondaryIPAddresses"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"SecondaryIPv6Addresses"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"EndpointID"</span>: <span class="hljs-string">"e519bb72809ee6f974029"</span>,<br>            <span class="hljs-attr">"Gateway"</span>: <span class="hljs-string">"172.18.0.1"</span>,<br>            <span class="hljs-attr">"GlobalIPv6Address"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"GlobalIPv6PrefixLen"</span>: <span class="hljs-number">0</span>,<br>            <span class="hljs-attr">"IPAddress"</span>: <span class="hljs-string">"172.18.0.2"</span>,<br>            <span class="hljs-attr">"IPPrefixLen"</span>: <span class="hljs-number">16</span>,<br>            <span class="hljs-attr">"IPv6Gateway"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"MacAddress"</span>: <span class="hljs-string">"02:42:ac:12:00:02"</span>,<br>            <span class="hljs-attr">"Networks"</span>: {<br>                <span class="hljs-attr">"bridge"</span>: {<br>                    <span class="hljs-attr">"IPAMConfig"</span>: <span class="hljs-literal">null</span>,<br>                    <span class="hljs-attr">"Links"</span>: <span class="hljs-literal">null</span>,<br>                    <span class="hljs-attr">"Aliases"</span>: <span class="hljs-literal">null</span>,<br>                    <span class="hljs-attr">"NetworkID"</span>: <span class="hljs-string">"126cf7e01e7d170ed"</span>,<br>                    <span class="hljs-attr">"EndpointID"</span>: <span class="hljs-string">"e519bb728"</span>,<br>                    <span class="hljs-attr">"Gateway"</span>: <span class="hljs-string">"172.18.0.1"</span>,<br>                    <span class="hljs-attr">"IPAddress"</span>: <span class="hljs-string">"172.18.0.2"</span>,<br>                    <span class="hljs-attr">"IPPrefixLen"</span>: <span class="hljs-number">16</span>,<br>                    <span class="hljs-attr">"IPv6Gateway"</span>: <span class="hljs-string">""</span>,<br>                    <span class="hljs-attr">"GlobalIPv6Address"</span>: <span class="hljs-string">""</span>,<br>                    <span class="hljs-attr">"GlobalIPv6PrefixLen"</span>: <span class="hljs-number">0</span>,<br>                    <span class="hljs-attr">"MacAddress"</span>: <span class="hljs-string">"02:42:ac:12:00:02"</span>,<br>                    <span class="hljs-attr">"DriverOpts"</span>: <span class="hljs-literal">null</span><br>                }<br>            }<br>        }<br>    }<br>]<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">17. </span>docker attach 容器id  进入正在运行的容器并以命令行进行交互<br><span class="hljs-code">        直接进入容器启动命令的终端, 不做任何事</span><br><span class="hljs-code">    docker exec -it 容器id [/bin/bash ...] 在容器外执行, 既可以进去干, 还可以打开新进程(直接操作 隔山打牛的效果)</span><br><span class="hljs-code">    </span><br><span class="hljs-bullet">18. </span>docker cp 容器id:容器内路径 目的主机路径  拷贝容器内文件到主机上<br></code></pre></td></tr></tbody></table></figure>
+<h1 id="二-Docker高级篇">二. Docker高级篇<a class="post-anchor" href="#二-Docker高级篇"></a></h1><ol>
+<li>Docker镜像是什么: </li>
+</ol>
+<p>轻量级的可执行的独立软件包, 用来打包软件运行环境和基于运行环境开发的软件, 它包含某个软件所需的所有内容, 包括代码, 运行时库, 环境变量, 和配置文件</p>
+<p>UnionFS联合文件系统: 分层的轻量级高性能的文件系统. </p>
+<p><a href="https://uploader.shimo.im/f/gyYaLFyfNT80604S.png" target="_blank" rel="noopener" data-caption="图片" data-fancybox="images"><img src="https://uploader.shimo.im/f/gyYaLFyfNT80604S.png" alt="图片"></a></p>
+<p>Docker镜像加载原理: docker镜像实际上由一层层的文件系统组成, </p>
+<p>bootfs: 主要包含bootloader和kernel, bootloader主要是引导加载kernel, linux刚启动时会加载bootfs文件系统, 在docker镜像的最底层是bootfs, 当boot加载完成后整个内核就都在内存中了, 此时内存的使用权已由bootfs转交给内核, 此时系统也会卸载bootfs</p>
+<p>rootfs: 在bootfs上, 包含的就是典型linux系统中的/dev, /proc, /bin等标准目录和文档, rootfs就是不同操作系统的发行版, 比如ubuntu centos等.</p>
+<p><a href="/.io//DNPpQaP7MccJLjlF.png" data-caption="图片" data-fancybox="images"><img src="/.io//DNPpQaP7MccJLjlF.png" alt="图片"></a></p>
+<p><a href="/.io//hfdAI2dRuPIgln12.png" data-caption="图片" data-fancybox="images"><img src="/.io//hfdAI2dRuPIgln12.png" alt="图片"></a></p>
+<p>tomcat 比centos还大的原因</p>
+<p>docker采用分层镜像的原因: 共享资源</p>
+<p>多个镜像都从相同的base镜像构建而来, 这样每个镜像的每一层都可被共享. </p>
+<p>docker的镜像都是只读的, 当容器启动时, 一个新的可写层被加载到 镜像的顶部, 这一层 通常被成为容器层, 容器层之下的都叫镜像层.</p>
+<ol>
+<li>docker 的commit</li>
+</ol>
+<p>我们对一个源镜像, 进行了自定义的修改和配置后, 得到了我们专属的容器, 那么怎么把这个容器分享给他人, 使得他人启动这个容器和我们启动这个容器达到一样的效果呢? </p>
+<p>这里就可以用commit命令. </p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">docker commit -a="goblin" -m="my images" 78sd7f8 mytomcat:v1.0 <br>  -a: author 作者<br>  -m: 容器信息<br>  要制作镜像的容器id<br>  新镜像的名字:Tag(版本)<br></code></pre></td></tr></tbody></table></figure>
+<ol>
+<li>docker容器数据卷: </li>
+</ol>
+<p>当我们关闭容器后, 容器内的数据就没了, 那么我们关闭容器时, 需要对容器内产生的数据进行持久化. 这个要持久的数据就是数据卷. </p>
+<p>k将运用与运行的环境打包形成容器运行, 运行可以伴随着容器, 但是我们对数据的要求希望是持久化的</p>
+<p>容器之间希望有可能共享数据</p>
+<p>Docker容器产生数据, 如果不通过docker commit生成新的镜像, 使得数据作为镜像一部分保存下来, 那么当容器删除后, 数据也就没了.</p>
+<p>为了能保存数据在docker中, 我们使用卷</p>
+<p>目的就是: 持久化和数据共享</p>
+<p>@1: 可以使用命令行</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1. </span>在容器上建立文件夹挂载到主机上, 二者实时共享, 均可读写<br>docker run -it -v /myDataVolumn:/dataVolumnContainer 镜像名<br><span class="hljs-bullet">2. </span>将容器上的文件夹/dataVolumnContainer(绝对路径)挂载到主机的/myDataVolumn, 容器只读: 容器只能查看主机传给他的文件, 自己不能写操作<br>docker run -it -v /myDataVolumn:/dataVolumnContainer:ro 镜像名 (readonly)<br></code></pre></td></tr></tbody></table></figure>
+
+<p>@2. 通过dockerfile</p>
+<p>dockerfile是对镜像 源码级 的描述, </p>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/03/31/Mac%E5%90%AF%E5%8A%A8%E5%90%84%E9%A1%B9%E6%9C%8D%E5%8A%A1/">Mac启动各项服务 终端命令</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/03/31/hello-world/">Hello World</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://shitianshuai1111.github.io/2020/03/31/Docker%E7%9A%84%E7%94%A8%E6%B3%95/">https://shitianshuai1111.github.io/2020/03/31/Docker%E7%9A%84%E7%94%A8%E6%B3%95/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://shitianshuai1111.github.io">Goblin</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"1N0I5U2khpyyIWzEvEbhMsGG-gzGzoHsz\",\"API_KEY\":\"fHCBuIOooriC0nhgPQSkYd3w\"},\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
