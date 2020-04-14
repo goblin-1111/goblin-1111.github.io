@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-实体类的生日是Date类型-直接返回前端-前端难处理"><span class="toc-text">1. 实体类的生日是Date类型, 直接返回前端, 前端难处理</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-实体类的生日是Date类型-直接返回前端-前端难处理"><span class="toc-text">1. 实体类的生日是Date类型, 直接返回前端, 前端难处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-根据经纬度计算距离"><span class="toc-text">2. 根据经纬度计算距离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-新增代码与mybatis逆向工程冲突问题"><span class="toc-text">3. 新增代码与mybatis逆向工程冲突问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-阿里云发送短信"><span class="toc-text">4. 阿里云发送短信</span></a></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -201,6 +201,36 @@
 
 
 
+<h4 id="2-根据经纬度计算距离">2. 根据经纬度计算距离<a class="post-anchor" href="#2-根据经纬度计算距离"></a></h4><blockquote>
+<p>已有用户的经纬度和商家的经纬度, 通过mysql sql语句根据距离排序查询出所有商家, 并将计算出的距离返回. </p>
+<p>SQL语句如下: </p>
+<p>参数含义locationX-用户经度</p>
+<p>locationY-用户纬度</p>
+<p>lng-数据库中商家经度</p>
+<p>lat-数据库中商家纬度</p>
+</blockquote>
+<p>将距离计算出, 别名distance和其他数据一起返回</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag"><<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"selectAllByDistance"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"ydListWithDistanceMap"</span>></span><br>      SELECT<br>      DISTINCT *,(<br>      round(6371392.89 * acos (<br>      cos ( radians(#{locationY,jdbcType=DECIMAL}) )<br>      * cos( radians( lat ) )<br>      * cos( radians( lng ) - radians(#{locationX,jdbcType=DECIMAL}) )<br>      + sin ( radians(#{locationY,jdbcType=DECIMAL}) )<br>      * sin( radians( lat ) )<br>      ),2<br>      ) )AS distance<br>      FROM  yd_shop ORDER BY distance<br><span class="hljs-tag"></<span class="hljs-name">select</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>经测试 误差与百度地图计算距离控制在三十米之内.</p>
+<h4 id="3-新增代码与mybatis逆向工程冲突问题">3. 新增代码与mybatis逆向工程冲突问题<a class="post-anchor" href="#3-新增代码与mybatis逆向工程冲突问题"></a></h4><blockquote>
+<p>新增的代码会被mybatis逆向工程覆盖, 如果配置关闭覆盖, 那么以后对该表做改动的时候又要重写新增的部分. 解决: 将新增的内容, 写在新建Dao中, 令xml文件继承源mapper.xml, 这样新增内容时, 就不担心被覆盖了.</p>
+</blockquote>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta"><?xml version="1.0" encoding="UTF-8"?></span><br><span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">mapper</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span> <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>></span><br><span class="hljs-tag"><<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.macro.mall.portal.dao.YdShopDao"</span>></span><br>    <span class="hljs-tag"><<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ydListWithDistanceMap"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"com.macro.mall.portal.domain.YdShop"</span></span><br><span class="hljs-tag">               <span class="hljs-attr">extends</span>=<span class="hljs-string">"com.macro.mall.mapper.YdShopMapper.BaseResultMap"</span>></span><br>        <span class="hljs-tag"><<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"distance"</span> <span class="hljs-attr">jdbcType</span>=<span class="hljs-string">"DECIMAL"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"distance"</span> /></span><br>    <span class="hljs-tag"></<span class="hljs-name">resultMap</span>></span><br><br>    <span class="hljs-tag"><<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"selectAllByDistance"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"ydListWithDistanceMap"</span>></span><br>        SELECT<br>        DISTINCT *,(<br>        round(6371392.89 * acos (<br>        cos ( radians(#{locationY,jdbcType=DECIMAL}) )<br>        * cos( radians( lat ) )<br>        * cos( radians( lng ) - radians(#{locationX,jdbcType=DECIMAL}) )<br>        + sin ( radians(#{locationY,jdbcType=DECIMAL}) )<br>        * sin( radians( lat ) )<br>        ),2<br>        ) )AS distance<br>        FROM  yd_shop ORDER BY distance<br>  <span class="hljs-tag"></<span class="hljs-name">select</span>></span><br><span class="hljs-tag"></<span class="hljs-name">mapper</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="4-阿里云发送短信">4. 阿里云发送短信<a class="post-anchor" href="#4-阿里云发送短信"></a></h4><p>工具类: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.macro.mall.portal.util;<br><br><span class="hljs-keyword">import</span> com.aliyuncs.CommonRequest;<br><span class="hljs-keyword">import</span> com.aliyuncs.CommonResponse;<br><span class="hljs-keyword">import</span> com.aliyuncs.DefaultAcsClient;<br><span class="hljs-keyword">import</span> com.aliyuncs.IAcsClient;<br><span class="hljs-keyword">import</span> com.aliyuncs.exceptions.ClientException;<br><span class="hljs-keyword">import</span> com.aliyuncs.http.MethodType;<br><span class="hljs-keyword">import</span> com.aliyuncs.profile.DefaultProfile;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span> 阿里云短信工具类</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> goblin</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020-04-14</span><br><span class="hljs-comment"> **/</span><br><span class="hljs-meta">@Slf</span>4j<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AliMessageUtils</span> </span>{<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String CONFIG_FILE = <span class="hljs-string">"rabbitmq-message.properties"</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String REGION_ID;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String ACCESS_KEY_ID;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String ACCESS_KEY_SECRET;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String SIGN_NAME;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String TEMPLATE_CODE;<br><br>    <span class="hljs-keyword">static</span> {<br>        Properties prop = <span class="hljs-keyword">new</span> Properties();<br>        <span class="hljs-comment">// 加载配置</span><br>        try (InputStream is = QiniuUtils.class.getClassLoader().getResourceAsStream("rabbitmq-message.properties")) {<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> == is) {<br>                log.error(<span class="hljs-string">"[阿里云短信工具类-初始化]失败,请提供配置文件：{}"</span>, CONFIG_FILE);<br>            } <span class="hljs-keyword">else</span> {<br>                prop.load(is);<br>            }<br>        } <span class="hljs-keyword">catch</span> (IOException e) {<br>            <span class="hljs-comment">// 几乎不可能事件，直接转换为运行时异常继续上抛</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);<br>        }<br>        REGION_ID = prop.getProperty(<span class="hljs-string">"region.id"</span>, <span class="hljs-string">""</span>);<br>        ACCESS_KEY_ID = prop.getProperty(<span class="hljs-string">"access.key.id"</span>, <span class="hljs-string">""</span>);<br>        ACCESS_KEY_SECRET = prop.getProperty(<span class="hljs-string">"access.key.secret"</span>, <span class="hljs-string">""</span>);<br>        SIGN_NAME = prop.getProperty(<span class="hljs-string">"sign.name"</span>, <span class="hljs-string">""</span>);<br>        TEMPLATE_CODE = prop.getProperty(<span class="hljs-string">"template.code"</span>, <span class="hljs-string">""</span>);<br>        log.info(<span class="hljs-string">"[阿里云工具类-初始化]完成"</span>);<br>    }<br><br>    <span class="hljs-comment">//发送短信</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendSMS</span><span class="hljs-params">(String phone, String code)</span> </span>{<br>        DefaultProfile profile = DefaultProfile.getProfile(REGION_ID, ACCESS_KEY_ID, ACCESS_KEY_SECRET);<br>        IAcsClient client = <span class="hljs-keyword">new</span> DefaultAcsClient(profile);<br><br>        <span class="hljs-comment">//拼接模板参数（验证码）value  Json格式字符串</span><br>      	<span class="hljs-comment">//您本次的验证码为：${code}，本验证码仅在5分钟内有效, 请勿告知他人, 如果不是您本人操作. 请忽略此信息. 欢迎您的加入!</span><br>        String codeSMS = <span class="hljs-string">"{\"code\":\""</span> + code + <span class="hljs-string">"\"}"</span>;<br><br>        CommonRequest request = <span class="hljs-keyword">new</span> CommonRequest();<br>        request.setMethod(MethodType.POST);<br>        request.setDomain(<span class="hljs-string">"dysmsapi.aliyuncs.com"</span>);<br>        request.setVersion(<span class="hljs-string">"2017-05-25"</span>);<br>        request.setAction(<span class="hljs-string">"SendSms"</span>);<br>        request.putQueryParameter(<span class="hljs-string">"RegionId"</span>, REGION_ID);<br>        request.putQueryParameter(<span class="hljs-string">"PhoneNumbers"</span>, phone);<br>        request.putQueryParameter(<span class="hljs-string">"SignName"</span>, SIGN_NAME);<br>        request.putQueryParameter(<span class="hljs-string">"TemplateCode"</span>, TEMPLATE_CODE);<br>        request.putQueryParameter(<span class="hljs-string">"TemplateParam"</span>, codeSMS);<br><br>        <span class="hljs-keyword">try</span> {<br>            CommonResponse response = client.getCommonResponse(request);<br>            System.out.println(response.getData());<br>        } <span class="hljs-keyword">catch</span> (ClientException e) {<br>            e.printStackTrace();<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>配置文件</p>
+<p>rabbitmq-message.properties</p>
+<figure class="highlight properties"><table><tbody><tr><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#地区</span><br><span class="hljs-meta">region.id</span>=<span class="hljs-string">cn-hangzhou</span><br><span class="hljs-comment">#access.key.id</span><br><span class="hljs-meta">access.key.id</span>=<span class="hljs-string">access.key.id</span><br><span class="hljs-comment">#access.key.secret</span><br><span class="hljs-meta">access.key.secret</span>=<span class="hljs-string">access.key.secret</span><br><span class="hljs-comment">#签名</span><br><span class="hljs-meta">sign.name</span>=<span class="hljs-string">签名</span><br><span class="hljs-comment">#短信模板</span><br><span class="hljs-meta">template.code</span>=<span class="hljs-string">短信模板</span><br></code></pre></td></tr></tbody></table></figure>
+
 </body></html>
 
   
@@ -230,7 +260,7 @@
     </div>
     <div class="item right">
         
-          <a href="/2020/03/31/%E5%9B%BE%E6%96%87%E6%B5%8B%E8%AF%95/">图文测试</a>
+          <a href="/2020/03/31/Mac%E5%90%AF%E5%8A%A8%E5%90%84%E9%A1%B9%E6%9C%8D%E5%8A%A1/">Mac启动各项服务 终端命令</a>
         
     </div>
   </div>
@@ -242,7 +272,7 @@
       本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
     </div>
     <div class="link">
-      永久链接：<a href="https://shitianshuai1111.github.io/2020/04/01/%E8%AE%B0%E5%BD%95/">https://shitianshuai1111.github.io/2020/04/01/%E8%AE%B0%E5%BD%95/</a>
+      永久链接：<a href="https://shitianshuai1111.github.io/2020/04/01/%E8%AE%B0%E5%BD%95/">本文永久链接</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！

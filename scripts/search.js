@@ -9,7 +9,7 @@ define(['jquery', 'util'], function($, util) {
   var resultBoxDom = $('#result-box')
   var resultConutBoxDom = $('#result-count')
   var _img_temp = `<div class="left" style="background-image: url('{IMG}')"></div>`
-  var _temp = `<li>
+  var _temp = `<li>z
                 <a href="{PERMALINK}" target="_blank">
                   {IMG_TEMP}
                   <div class="right">

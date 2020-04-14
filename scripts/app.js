@@ -140,6 +140,7 @@ require([
       var ratio = (scrollTop / scrollAvail) * 100 + '%'
       $('#progress > .line').css('width', ratio)
     })
+
     var mousewheel = function(e) {
       e = e || window.event
 

@@ -16,7 +16,7 @@
     <meta name="description" content="java technology blog sharing" />
     
     <title>
-      图文测试 - Goblin&#39; Blogs
+      Elasticsearch实现搜索 - Goblin&#39; Blogs
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#测试图片上传"><span class="toc-text">测试图片上传</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Elasticsearch"><span class="toc-text">Elasticsearch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-目录结构"><span class="toc-text">一. 目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-pom依赖"><span class="toc-text">1.1 pom依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-controller接口"><span class="toc-text">1.2 controller接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-导入ES"><span class="toc-text">二. 导入ES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-接口"><span class="toc-text">2.1 接口</span></a></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -172,20 +172,31 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">图文测试</div>
+      <div class="title">Elasticsearch实现搜索</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2020/03/31</span>
+          <span>2017/05/22</span>
         </span>
 
         
-          <span class="item leancloud-visitors" id="/2020/03/31/%E5%9B%BE%E6%96%87%E6%B5%8B%E8%AF%95/" data-flag-title="图文测试">
+          <span class="item leancloud-visitors" id="/2017/05/22/Elasticsearch/" data-flag-title="Elasticsearch实现搜索">
             <span class="iconfont icon-eye1"></span>
             <span class="leancloud-visitors-count"></span>
           </span>
         
 
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
         
         
          
@@ -194,7 +205,11 @@
             <span>
                 
                   
-                    <a href="/tags/test">test</a>
+                    <a href="/tags/笔记">笔记</a>
+                  
+                
+                  
+                    <a href="/tags/业务">业务</a>
                   
                 
             </span>
@@ -204,11 +219,57 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><p><a href="/.io//WechatIMG35.jpeg" data-caption="小女孩" data-fancybox="images"><img src="/.io//WechatIMG35.jpeg" alt="小女孩"></a></p>
-<p><a href="/.io//WechatIMG36.jpeg" data-caption="小女孩" data-fancybox="images"><img src="/.io//WechatIMG36.jpeg" alt="小女孩"></a></p>
-<p><a href="/.io//image-20200331231751654.png" data-caption="image-20200331231751654" data-fancybox="images"><img src="/.io//image-20200331231751654.png" alt="image-20200331231751654"></a></p>
-<p><a href="/.io//image-20200331232454017.png" data-caption="image-20200331232454017" data-fancybox="images"><img src="/.io//image-20200331232454017.png" alt="image-20200331232454017"></a></p>
-<h1 id="测试图片上传">测试图片上传<a class="post-anchor" href="#测试图片上传"></a></h1><p><a href="/.io//006bM1K4ly1fm3glcgu7zj31bf0qo11v.jpg" data-caption="刺激!" data-fancybox="images"><img src="/.io//006bM1K4ly1fm3glcgu7zj31bf0qo11v.jpg" alt="刺激!"></a></p>
+    <html><head></head><body><h1 id="Elasticsearch">Elasticsearch<a class="post-anchor" href="#Elasticsearch"></a></h1><h2 id="一-目录结构">一. 目录结构<a class="post-anchor" href="#一-目录结构"></a></h2><p>mall项目的搜索模块: </p>
+<p>目录结构</p>
+<p>mall-search</p>
+<p>​     |- src</p>
+<p>​        |- main</p>
+<p>​            |- java</p>
+<p>​                |- com.mall.search</p>
+<p>​                    |- config</p>
+<p>​                         - MyBatisConfig </p>
+<p>​                         - Swagger2Config</p>
+<p>​                    |- controller</p>
+<p>​                         - EsProductController</p>
+<p>​                    |- dao</p>
+<p>​                         - EsProductDao</p>
+<p>​                    |- domain</p>
+<p>​                         - EsProduct</p>
+<p>​                         - EsProductAttributeValue</p>
+<p>​                         - EsProductRelatedInfo</p>
+<p>​                    |- repository</p>
+<p>​                         - EsProductRepository</p>
+<p>​                    |- service</p>
+<p>​                       |- impl</p>
+<p>​                            - EsProductServiceImpl</p>
+<p>​                         - EsProductService</p>
+<p>​                      - MallSearchApplication</p>
+<p>​            |- resources</p>
+<p>​                |- dao</p>
+<p>​                    |- EsProductDao.xml</p>
+<p>​                  - application.yml </p>
+<p>​                  - application-dev.yml </p>
+<p>​                  - application-prod.yml</p>
+<p>​          - pom.xml</p>
+<h3 id="1-1-pom依赖">1.1 pom依赖<a class="post-anchor" href="#1-1-pom依赖"></a></h3><figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-comment"><!--mbg是项目的实体模块--></span><br><span class="hljs-tag"><<span class="hljs-name">dependencies</span>></span><br>  <span class="hljs-tag"><<span class="hljs-name">dependency</span>></span><br>    <span class="hljs-tag"><<span class="hljs-name">groupId</span>></span>com.macro.mall<span class="hljs-tag"></<span class="hljs-name">groupId</span>></span><br>    <span class="hljs-tag"><<span class="hljs-name">artifactId</span>></span>mall-mbg<span class="hljs-tag"></<span class="hljs-name">artifactId</span>></span><br>  <span class="hljs-tag"></<span class="hljs-name">dependency</span>></span><br><span class="hljs-comment"><!--springboot整合elasticsearch依赖--></span><br>  <span class="hljs-tag"><<span class="hljs-name">dependency</span>></span><br>    <span class="hljs-tag"><<span class="hljs-name">groupId</span>></span>org.springframework.boot<span class="hljs-tag"></<span class="hljs-name">groupId</span>></span><br>    <span class="hljs-tag"><<span class="hljs-name">artifactId</span>></span>spring-boot-starter-data-elasticsearch<span class="hljs-tag"></<span class="hljs-name">artifactId</span>></span><br>  <span class="hljs-tag"></<span class="hljs-name">dependency</span>></span><br><span class="hljs-tag"></<span class="hljs-name">dependencies</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="1-2-controller接口">1.2 controller接口<a class="post-anchor" href="#1-2-controller接口"></a></h3><figure class="highlight md"><table><tbody><tr><td class="code"><pre><code class="hljs md">/esProduct<br><span class="hljs-code">	/importAll        导入所有数据库中商品到ES</span><br><span class="hljs-code">	/delete/{id}      根据id删除商品</span><br><span class="hljs-code">	/delete/batch     根据id批量删除商品</span><br><span class="hljs-code">	/create/{id}      根据id创建商品</span><br><span class="hljs-code">	/search/simple    简单搜索</span><br><span class="hljs-code">	/search           综合搜索、筛选、排序</span><br><span class="hljs-code">	/recommend/{id}   根据商品id推荐商品</span><br><span class="hljs-code">	/search/relate    获取搜索的相关品牌、分类及筛选属性</span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="二-导入ES">二. 导入ES<a class="post-anchor" href="#二-导入ES"></a></h2><h2 id="2-1-接口">2.1 接口<a class="post-anchor" href="#2-1-接口"></a></h2><figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiOperation</span>(value = <span class="hljs-string">"导入所有数据库中商品到ES"</span>)<br><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/importAll"</span>, method = RequestMethod.POST)<br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> CommonResult<Integer> <span class="hljs-title">importAllList</span><span class="hljs-params">()</span> </span>{<br>  <span class="hljs-keyword">int</span> count = esProductService.importAll();<br>  <span class="hljs-keyword">return</span> CommonResult.success(count);<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>importAll方法: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">importAll</span><span class="hljs-params">()</span> </span>{<br>  List<EsProduct> esProductList = productDao.getAllEsProductList(<span class="hljs-keyword">null</span>);<br>  Iterable<EsProduct> esProductIterable = productRepository.saveAll(esProductList);<br>  Iterator<EsProduct> iterator = esProductIterable.iterator();<br>  <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (iterator.hasNext()) {<br>    result++;<br>    iterator.next();<br>  }<br>  <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag"><<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getAllEsProductList"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"esProductListMap"</span>></span><br>  select<br>  p.id id,<br>  p.product_sn productSn,<br>  p.brand_id brandId,<br>  p.brand_name brandName,<br>  p.product_category_id productCategoryId,<br>  p.product_category_name productCategoryName,<br>  p.pic pic,<br>  p.name name,<br>  p.sub_title subTitle,<br>  p.price price,<br>  p.sale sale,<br>  p.new_status newStatus,<br>  p.recommand_status recommandStatus,<br>  p.stock stock,<br>  p.promotion_type promotionType,<br>  p.keywords keywords,<br>  p.sort sort,<br>  pav.id attr_id,<br>  pav.value attr_value,<br>  pav.product_attribute_id attr_product_attribute_id,<br>  pa.type attr_type,<br>  pa.name attr_name<br>  from pms_product p<br>  left join pms_product_attribute_value pav on p.id = pav.product_id<br>  left join pms_product_attribute pa on pav.product_attribute_id= pa.id<br>  where delete_status = 0 and publish_status = 1<br>  <span class="hljs-tag"><<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"id!=null"</span>></span><br>    and p.id=#{id}<br>  <span class="hljs-tag"></<span class="hljs-name">if</span>></span><br><span class="hljs-tag"></<span class="hljs-name">select</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
 </body></html>
 
   
@@ -235,12 +296,12 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/04/01/%E8%AE%B0%E5%BD%95/">记录</a>
+          <a href="/2020/03/29/Hexo%20Blog%E7%9A%84%E6%90%AD%E5%BB%BA/">Hexo Blog的搭建</a>
         
     </div>
     <div class="item right">
         
-          <a href="/2020/03/31/Mac%E5%90%AF%E5%8A%A8%E5%90%84%E9%A1%B9%E6%9C%8D%E5%8A%A1/">Mac启动各项服务 终端命令</a>
+          <a href="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5%E4%B9%8BOSS/">图片上传策略之OSS</a>
         
     </div>
   </div>
@@ -252,7 +313,7 @@
       本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
     </div>
     <div class="link">
-      永久链接：<a href="https://shitianshuai1111.github.io/2020/03/31/%E5%9B%BE%E6%96%87%E6%B5%8B%E8%AF%95/">https://shitianshuai1111.github.io/2020/03/31/%E5%9B%BE%E6%96%87%E6%B5%8B%E8%AF%95/</a>
+      永久链接：<a href="https://shitianshuai1111.github.io/2017/05/22/Elasticsearch/">本文永久链接</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
