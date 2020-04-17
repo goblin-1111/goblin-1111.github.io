@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-OSS"><span class="toc-text">一. OSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-需求"><span class="toc-text">二. 需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-实现"><span class="toc-text">三. 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-输入表单"><span class="toc-text">1. 输入表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-前端发送图片上传的请求"><span class="toc-text">2. 前端发送图片上传的请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-同时-后端Controller接收请求"><span class="toc-text">3. 同时, 后端Controller接收请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-前端收到结果"><span class="toc-text">4. 前端收到结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-再次发送请求"><span class="toc-text">5. 再次发送请求</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#方式一"><span class="toc-text">方式一:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-OSS"><span class="toc-text">一. OSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-需求"><span class="toc-text">二. 需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-实现"><span class="toc-text">三. 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-输入表单"><span class="toc-text">1. 输入表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-前端发送图片上传的请求"><span class="toc-text">2. 前端发送图片上传的请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-同时-后端Controller接收请求"><span class="toc-text">3. 同时, 后端Controller接收请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-前端收到结果"><span class="toc-text">4. 前端收到结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-再次发送请求"><span class="toc-text">5. 再次发送请求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方式二"><span class="toc-text">方式二:</span></a></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -180,7 +180,7 @@
         </span>
 
         
-          <span class="item leancloud-visitors" id="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5%E4%B9%8BOSS/" data-flag-title="图片上传策略之OSS">
+          <span class="item leancloud-visitors" id="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/" data-flag-title="图片上传策略之OSS">
             <span class="iconfont icon-eye1"></span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -219,7 +219,7 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><h2 id="一-OSS">一. OSS<a class="post-anchor" href="#一-OSS"></a></h2><p>Oss对象存储的优势体现在: </p>
+    <html><head></head><body><h1 id="方式一">方式一:<a class="post-anchor" href="#方式一"></a></h1><h2 id="一-OSS">一. OSS<a class="post-anchor" href="#一-OSS"></a></h2><p>Oss对象存储的优势体现在: </p>
 <p><a href="/.io//2ffd6239872d46a0801f8686700dff8d.png" data-caption="OSS" data-fancybox="images"><img src="/.io//2ffd6239872d46a0801f8686700dff8d.png" alt="OSS"></a></p>
 <blockquote>
 <p>本张图片就存放于七牛云上</p>
@@ -252,7 +252,47 @@
 
 
 <h3 id="5-再次发送请求">5. 再次发送请求<a class="post-anchor" href="#5-再次发送请求"></a></h3><p>此时, 请求体中带着反馈的内容和图片的url等内容, 交由后端保存到数据库中. </p>
-<figure class="highlight json"><table><tbody><tr><td class="code"><pre><code class="hljs json">{<br>  <span class="hljs-attr">"feedback"</span>: <span class="hljs-string">" "</span>,<br>  <span class="hljs-attr">"questionType"</span>: <span class="hljs-string">" "</span>,<br>  <span class="hljs-attr">"images"</span>: <span class="hljs-string">" "</span><br>  ...<br>}<br></code></pre></td></tr></tbody></table></figure></body></html>
+<figure class="highlight json"><table><tbody><tr><td class="code"><pre><code class="hljs json">{<br>  <span class="hljs-attr">"feedback"</span>: <span class="hljs-string">" "</span>,<br>  <span class="hljs-attr">"questionType"</span>: <span class="hljs-string">" "</span>,<br>  <span class="hljs-attr">"images"</span>: <span class="hljs-string">" "</span><br>  ...<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h1 id="方式二">方式二:<a class="post-anchor" href="#方式二"></a></h1><p>前端直接向阿里云OSS发送上传图片请求</p>
+<blockquote>
+<p>Controller:</p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.macro.mall.controller;<br><br><br><span class="hljs-keyword">import</span> com.macro.mall.common.api.CommonResult;<br><span class="hljs-keyword">import</span> com.macro.mall.dto.OssCallbackResult;<br><span class="hljs-keyword">import</span> com.macro.mall.dto.OssPolicyResult;<br><span class="hljs-keyword">import</span> com.macro.mall.service.impl.OssServiceImpl;<br><span class="hljs-keyword">import</span> io.swagger.annotations.Api;<br><span class="hljs-keyword">import</span> io.swagger.annotations.ApiOperation;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Oss相关操作接口</span><br><span class="hljs-comment"> * Created by macro on 2018/4/26.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Controller</span><br><span class="hljs-meta">@Api</span>(tags = <span class="hljs-string">"OssController"</span>, description = <span class="hljs-string">"Oss管理"</span>)<br><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/aliyun/oss"</span>)<br><span class="hljs-meta">@CrossOrigin</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OssController</span> </span>{<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> OssServiceImpl ossService;<br><br>    <span class="hljs-meta">@ApiOperation</span>(value = <span class="hljs-string">"oss上传签名生成"</span>)<br>    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/policy"</span>, method = RequestMethod.GET)<br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> CommonResult<OssPolicyResult> <span class="hljs-title">policy</span><span class="hljs-params">()</span> </span>{<br>        OssPolicyResult result = ossService.policy();<br>        <span class="hljs-keyword">return</span> CommonResult.success(result);<br>    }<br><br>    <span class="hljs-meta">@ApiOperation</span>(value = <span class="hljs-string">"oss上传成功回调"</span>)<br>    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"callback"</span>, method = RequestMethod.POST)<br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> CommonResult<OssCallbackResult> <span class="hljs-title">callback</span><span class="hljs-params">(HttpServletRequest request)</span> </span>{<br>        OssCallbackResult ossCallbackResult = ossService.callback(request);<br>        <span class="hljs-keyword">return</span> CommonResult.success(ossCallbackResult);<br>    }<br><br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<blockquote>
+<p>OssServiceImpl: </p>
+</blockquote>
+<ol>
+<li><p>前端请求后台生成 许可</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * 签名生成</span><br><span class="hljs-comment">	 */</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> OssPolicyResult <span class="hljs-title">policy</span><span class="hljs-params">()</span> </span>{<br>  OssPolicyResult result = <span class="hljs-keyword">new</span> OssPolicyResult();<br>  <span class="hljs-comment">// 存储目录</span><br>  SimpleDateFormat sdf = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyyMMdd"</span>);<br>  String dir = ALIYUN_OSS_DIR_PREFIX + sdf.format(<span class="hljs-keyword">new</span> Date());<br>  <span class="hljs-comment">// 签名有效期</span><br>  <span class="hljs-keyword">long</span> expireEndTime = System.currentTimeMillis() + ALIYUN_OSS_EXPIRE * <span class="hljs-number">1000</span>;<br>  Date expiration = <span class="hljs-keyword">new</span> Date(expireEndTime);<br>  <span class="hljs-comment">// 文件大小</span><br>  <span class="hljs-keyword">long</span> maxSize = ALIYUN_OSS_MAX_SIZE * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>;<br>  <span class="hljs-comment">// 回调</span><br>  OssCallbackParam callback = <span class="hljs-keyword">new</span> OssCallbackParam();<br>  callback.setCallbackUrl(ALIYUN_OSS_CALLBACK);<br>  callback.setCallbackBody(<span class="hljs-string">"filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}"</span>);<br>  callback.setCallbackBodyType(<span class="hljs-string">"application/x-www-form-urlencoded"</span>);<br>  <span class="hljs-comment">// 提交节点</span><br>  String action = <span class="hljs-string">"http://"</span> + ALIYUN_OSS_BUCKET_NAME + <span class="hljs-string">"."</span> + ALIYUN_OSS_ENDPOINT;<br>  <span class="hljs-keyword">try</span> {<br>    PolicyConditions policyConds = <span class="hljs-keyword">new</span> PolicyConditions();<br>    policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, <span class="hljs-number">0</span>, maxSize);<br>    policyConds.addConditionItem(MatchMode.StartWith, PolicyConditions.COND_KEY, dir);<br>    String postPolicy = ossClient.generatePostPolicy(expiration, policyConds);<br>    <span class="hljs-keyword">byte</span>[] binaryData = postPolicy.getBytes(<span class="hljs-string">"utf-8"</span>);<br>    String policy = BinaryUtil.toBase64String(binaryData);<br>    String signature = ossClient.calculatePostSignature(postPolicy);<br>    String callbackData = BinaryUtil.toBase64String(JSONUtil.parse(callback).toString().getBytes(<span class="hljs-string">"utf-8"</span>));<br>    <span class="hljs-comment">// 返回结果</span><br>    result.setAccessKeyId(ossClient.getCredentialsProvider().getCredentials().getAccessKeyId());<br>    result.setPolicy(policy);<br>    result.setSignature(signature);<br>    result.setDir(dir);<br>    result.setCallback(callbackData);<br>    result.setHost(action);<br>  } <span class="hljs-keyword">catch</span> (Exception e) {<br>    LOGGER.error(<span class="hljs-string">"签名生成失败"</span>, e);<br>  }<br>  <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<blockquote>
+<p>配置文件:</p>
+</blockquote>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">aliyun:<br>  oss:<br>    endpoint:  # oss对外服务的访问域名<br>    accessKeyId:  # 访问身份验证中用到用户标识<br>    accessKeySecret:  # 用户用于加密签名字符串和oss用来验证签名字符串的密钥<br>    bucketName:  # oss的存储空间<br>    policy:<br>      expire: 300 # 签名有效期(S)<br>    maxSize: 10 # 上传文件大小(M)<br>    callback: http://localhost:8080/aliyun/oss/callback # 文件上传成功后的回调地址<br>    dir:<br>      prefix: mall/images/ # 上传文件夹路径前缀<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<blockquote>
+<p>阿里云上传成功后的回调函数</p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> OssCallbackResult <span class="hljs-title">callback</span><span class="hljs-params">(HttpServletRequest request)</span> </span>{<br>  OssCallbackResult result= <span class="hljs-keyword">new</span> OssCallbackResult();<br>  String filename = request.getParameter(<span class="hljs-string">"filename"</span>);<br>  filename = <span class="hljs-string">"http://"</span>.concat(ALIYUN_OSS_BUCKET_NAME).concat(<span class="hljs-string">"."</span>).concat(ALIYUN_OSS_ENDPOINT).concat(<span class="hljs-string">"/"</span>).concat(filename);<br>  result.setFilename(filename);<br>  result.setSize(request.getParameter(<span class="hljs-string">"size"</span>));<br>  result.setMimeType(request.getParameter(<span class="hljs-string">"mimeType"</span>));<br>  result.setWidth(request.getParameter(<span class="hljs-string">"width"</span>));<br>  result.setHeight(request.getParameter(<span class="hljs-string">"height"</span>));<br>  <span class="hljs-keyword">return</span> result;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>前端通过回调函数得到存储图片的url路径.</p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
 
   
     <div class="post-reward">
@@ -293,7 +333,7 @@
       本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
     </div>
     <div class="link">
-      永久链接：<a href="https://shitianshuai1111.github.io/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5%E4%B9%8BOSS/">本文永久链接</a>
+      永久链接：<a href="https://shitianshuai1111.github.io/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/">本文永久链接</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
@@ -315,7 +355,7 @@
         </footer>
       </div>
     </div>
-  </body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
   
 </html>
 <script type="text/javascript">
