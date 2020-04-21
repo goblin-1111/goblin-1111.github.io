@@ -205,11 +205,11 @@
             <span>
                 
                   
-                    <a href="/tags/笔记">笔记</a>
+                    <a href="/tags/业务">业务</a>
                   
                 
                   
-                    <a href="/tags/业务">业务</a>
+                    <a href="/tags/笔记">笔记</a>
                   
                 
             </span>
@@ -270,7 +270,7 @@
 
 <figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag"><<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"getAllEsProductList"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"esProductListMap"</span>></span><br>  select<br>  p.id id,<br>  p.product_sn productSn,<br>  p.brand_id brandId,<br>  p.brand_name brandName,<br>  p.product_category_id productCategoryId,<br>  p.product_category_name productCategoryName,<br>  p.pic pic,<br>  p.name name,<br>  p.sub_title subTitle,<br>  p.price price,<br>  p.sale sale,<br>  p.new_status newStatus,<br>  p.recommand_status recommandStatus,<br>  p.stock stock,<br>  p.promotion_type promotionType,<br>  p.keywords keywords,<br>  p.sort sort,<br>  pav.id attr_id,<br>  pav.value attr_value,<br>  pav.product_attribute_id attr_product_attribute_id,<br>  pa.type attr_type,<br>  pa.name attr_name<br>  from pms_product p<br>  left join pms_product_attribute_value pav on p.id = pav.product_id<br>  left join pms_product_attribute pa on pav.product_attribute_id= pa.id<br>  where delete_status = 0 and publish_status = 1<br>  <span class="hljs-tag"><<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"id!=null"</span>></span><br>    and p.id=#{id}<br>  <span class="hljs-tag"></<span class="hljs-name">if</span>></span><br><span class="hljs-tag"></<span class="hljs-name">select</span>></span><br></code></pre></td></tr></tbody></table></figure>
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
 
   
     <div class="post-reward">
@@ -335,7 +335,7 @@
         </footer>
       </div>
     </div>
-  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
   
 </html>
 <script type="text/javascript">
