@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="Java技术记录&amp;分享" />
+    
+    <title>
+      Rap2平台 Docker方式搭建 - Goblin&#39; Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Goblin' Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rap2平台-Docker方式搭建"><span class="toc-text">Rap2平台 Docker方式搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-自动部署"><span class="toc-text">一. 自动部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装-Docker"><span class="toc-text">1. 安装 Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置项目"><span class="toc-text">2. 配置项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行命令"><span class="toc-text">3. 执行命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-镜像升级"><span class="toc-text">4. 镜像升级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-手动部署"><span class="toc-text">二. 手动部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-环境要求"><span class="toc-text">1. 环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-开发模式"><span class="toc-text">2. 开发模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-安装-MySQL-和-Redis-服务器"><span class="toc-text">2.1 安装 MySQL 和 Redis 服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-安装-pandoc"><span class="toc-text">2.2 安装 pandoc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动redis-server"><span class="toc-text">启动redis-server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-先创建创建数据库"><span class="toc-text">2.4 先创建创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-初始化"><span class="toc-text">2.5 初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-安装-amp-amp-TypeScript-编译"><span class="toc-text">2.6 安装 &amp;&amp; TypeScript 编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7初始化数据库表"><span class="toc-text">2.7初始化数据库表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-8执行-mocha-测试用例和-js-代码规范检查"><span class="toc-text">2.8执行 mocha 测试用例和 js 代码规范检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-9-启动开发模式的服务器-监视并在发生代码变更时自动重启"><span class="toc-text">2.9 启动开发模式的服务器 监视并在发生代码变更时自动重启</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-生产模式"><span class="toc-text">3. 生产模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tech-Arch"><span class="toc-text">Tech Arch</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/friends" class="">
+          Friends
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Goblin</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Goblin</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/friends" class="">
+            Friends
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shitianshuai1111" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/yue-xia-hun-xi" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/5670783132" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">Rap2平台 Docker方式搭建</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2017/06/25</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2017/06/25/Rap2%E5%B9%B3%E5%8F%B0-Docker%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BA/" data-flag-title="Rap2平台 Docker方式搭建">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/linux">linux</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/笔记">笔记</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h1 id="Rap2平台-Docker方式搭建">Rap2平台 Docker方式搭建<a class="post-anchor" href="#Rap2平台-Docker方式搭建"></a></h1><h2 id="一-自动部署">一. 自动部署<a class="post-anchor" href="#一-自动部署"></a></h2><h3 id="1-安装-Docker">1. 安装 Docker<a class="post-anchor" href="#1-安装-Docker"></a></h3><p>国内用户可参考 <a href="https://get.daocloud.io/" target="_blank" rel="noopener">https://get.daocloud.io/</a> 安装 Docker 以及 Docker Compose (Linux 用户需要单独安装)，建议按照链接指引配置 Docker Hub 的国内镜像提高加载速度。</p>
+<h3 id="2-配置项目">2. 配置项目<a class="post-anchor" href="#2-配置项目"></a></h3><p>在任意地方建立目录 rap</p>
+<p>把本仓库中的 <a href="https://raw.githubusercontent.com/thx/rap2-delos/master/docker-compose.yml" target="_blank" rel="noopener">docker-compose.yml</a> 放到 rap 目录中</p>
+<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># 2020.7.3日版</span><br><span class="hljs-comment"># mail@dongguochao.com</span><br><span class="hljs-comment"># llitfkitfk@gmail.com</span><br><span class="hljs-comment"># chibing.fy@alibaba-inc.com</span><br><br><span class="hljs-attr">version:</span> <span class="hljs-string">"3"</span><br><br><span class="hljs-attr">services:</span><br>  <span class="hljs-comment"># frontend</span><br>  <span class="hljs-attr">dolores:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">rapteam/rap2-dolores:latest</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-comment">#冒号前可以自定义前端端口号，冒号后不要动</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-number">3000</span><span class="hljs-string">:38081</span><br><br>  <span class="hljs-comment"># backend</span><br>  <span class="hljs-attr">delos:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">rapteam/rap2-delos:latest</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-comment"># 这里的配置不要改哦</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-number">38080</span><span class="hljs-string">:38080</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">SERVE_PORT=38080</span><br>      <span class="hljs-comment"># if you have your own mysql, config it here, and disable the 'mysql' config blow</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MYSQL_URL=mysql</span> <span class="hljs-comment"># links will maintain /etc/hosts, just use 'container_name'</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MYSQL_PORT=3306</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MYSQL_USERNAME=root</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MYSQL_PASSWD=</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MYSQL_SCHEMA=rap2</span><br><br>      <span class="hljs-comment"># redis config</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">REDIS_URL=redis</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">REDIS_PORT=6379</span><br><br>      <span class="hljs-comment"># production / development</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">NODE_ENV=production</span><br><br>      <span class="hljs-comment"># email 如果想让邮箱找回密码能力生效需要配置邮件发送</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MAIL_HOST=smtp.aliyun.com</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MAIL_PORT=465</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MAIL_USER=rap2org@service.alibaba.com</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MAIL_PASS=xxxxxx</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">MAIL_SENDER=rap2org@service.alibaba.com</span><br>    <span class="hljs-comment">###### 'sleep 30 && node scripts/init' will drop the tables</span><br>    <span class="hljs-comment">###### RUN ONLY ONCE THEN REMOVE 'sleep 30 && node scripts/init'</span><br>    <span class="hljs-attr">command:</span> <span class="hljs-string">/bin/sh</span> <span class="hljs-string">-c</span> <span class="hljs-string">'node dispatch.js'</span><br>    <span class="hljs-comment"># init the databases</span><br>    <span class="hljs-comment"># command: sleep 30 && node scripts/init && node dispatch.js</span><br>    <span class="hljs-comment"># without init</span><br>    <span class="hljs-comment"># command: node dispatch.js</span><br>    <span class="hljs-attr">depends_on:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">redis</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">mysql</span><br><br>  <span class="hljs-attr">redis:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">redis:4</span><br><br>  <span class="hljs-comment"># disable this if you have your own mysql</span><br>  <span class="hljs-attr">mysql:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:5.7</span><br>    <span class="hljs-comment"># expose 33306 to client (navicat)</span><br>    <span class="hljs-comment">#ports:</span><br>    <span class="hljs-comment">#   - 33306:3306</span><br>    <span class="hljs-attr">volumes:</span><br>      <span class="hljs-comment"># change './docker/mysql/volume' to your own path</span><br>      <span class="hljs-comment"># WARNING: without this line, your data will be lost.</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">"./docker/mysql/volume:/var/lib/mysql"</span><br>    <span class="hljs-attr">command:</span> <span class="hljs-string">mysqld</span> <span class="hljs-string">--character-set-server=utf8mb4</span> <span class="hljs-string">--collation-server=utf8mb4_unicode_ci</span> <span class="hljs-string">--init-connect='SET</span> <span class="hljs-string">NAMES</span> <span class="hljs-string">utf8mb4;'</span> <span class="hljs-string">--innodb-flush-log-at-trx-commit=0</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-attr">MYSQL_ALLOW_EMPTY_PASSWORD:</span> <span class="hljs-string">"true"</span><br>      <span class="hljs-attr">MYSQL_DATABASE:</span> <span class="hljs-string">"rap2"</span><br>      <span class="hljs-attr">MYSQL_USER:</span> <span class="hljs-string">"root"</span><br>      <span class="hljs-attr">MYSQL_PASSWORD:</span> <span class="hljs-string">""</span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>Rap 前端服务的端口号默认为 3000，你可以在 docker-compose.yml 中按照注释自定义</p>
+<h3 id="3-执行命令">3. 执行命令<a class="post-anchor" href="#3-执行命令"></a></h3><p>在 rap 目录下执行下面的命令：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain"># 拉取镜像并启动<br>docker-compose up -d<br><br># 启动后，第一次运行需要手动初始化mysql数据库<br># ⚠️注意: 只有第一次该这样做<br>docker-compose exec delos node scripts/init<br><br># 部署成功后 访问<br>http://localhost:3000 # 前端（可自定义端口号）<br>http://localhost:38080 # 后端<br><br># 如果访问不了可能是数据库没有链接上，关闭 rap 服务<br>docker-compose down<br># 再重新运行<br>docker-compose up -d<br># 如果 Sequelize 报错可能是数据库表发生了变化，运行下面命令同步<br>docker-compose exec delos node scripts/updateSchema<br></code></pre></td></tr></tbody></table></figure>
+
+<p><strong>⚠️注意：第一次运行后 rap 目录下会被自动创建一个 docker 目录，里面存有 rap 的数据库数据，可千万不要删除。</strong></p>
+<h3 id="4-镜像升级">4. 镜像升级<a class="post-anchor" href="#4-镜像升级"></a></h3><p>Rap 经常会进行 bugfix 和功能升级，用 Docker 可以很方便地跟随主项目升级</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain"># 拉取一下最新的镜像<br>docker-compose pull<br># 暂停当前应用<br>docker-compose down<br># 重新构建并启动<br>docker-compose up -d --build<br># 有时表结构会发生变化，执行下面命令同步<br>docker-compose exec delos node scripts/updateSchema<br># 清空不被使用的虚悬镜像<br>docker image prune -f<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="二-手动部署">二. 手动部署<a class="post-anchor" href="#二-手动部署"></a></h2><h3 id="1-环境要求">1. 环境要求<a class="post-anchor" href="#1-环境要求"></a></h3><ul>
+<li>Node.js 8.9.4+</li>
+<li>MySQL 5.7+</li>
+<li>Redis 4.0+</li>
+<li>pandoc 2.73 (供文档生成使用)</li>
+</ul>
+<h3 id="2-开发模式">2. 开发模式<a class="post-anchor" href="#2-开发模式"></a></h3><h4 id="2-1-安装-MySQL-和-Redis-服务器">2.1 安装 MySQL 和 Redis 服务器<a class="post-anchor" href="#2-1-安装-MySQL-和-Redis-服务器"></a></h4><p>请自行查找搭建方法，mysql/redis 配置在 config.*.ts 文件中，在不修改任何配置的情况下， redis 会通过默认端口 + 本机即可正常访问，确保 redis-server 打开即可。</p>
+<p>注意：修改 cofig 文件后需要重新 <code>npm run build</code> 才能生效</p>
+<h4 id="2-2-安装-pandoc">2.2 安装 pandoc<a class="post-anchor" href="#2-2-安装-pandoc"></a></h4><p>我们使用 pandoc 来生成 Rap 的离线文档，安装 Pandoc 最通用的办法是在 pandoc 的 <a href="https://github.com/jgm/pandoc/releases/tag/2.7.3" target="_blank" rel="noopener">release 页面</a>下载对应平台的二进制文件安装即可。</p>
+<p>其中 linux 版本最好放在<code>/usr/local/bin/pandoc</code> 让终端能直接找到，并执行 <code>chmod +x /usr/local/bin/pandoc</code> 给调用权限。</p>
+<p>测试在命令行执行命令 <code>pandoc -h</code> 有响应即可。</p>
+<h4 id="启动redis-server">启动redis-server<a class="post-anchor" href="#启动redis-server"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">redis-server<br></code></pre></td></tr></tbody></table></figure>
+
+<p>后台执行可以使用 nohup 或 pm2，这里推荐使用 pm2，下面命令会安装 pm2，并通过 pm2 来启动 redis 缓存服务</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">npm install -g pm2<br>npm run start:redis<br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="2-4-先创建创建数据库">2.4 先创建创建数据库<a class="post-anchor" href="#2-4-先创建创建数据库"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">mysql -e 'CREATE DATABASE IF NOT EXISTS RAP2_DELOS_APP DEFAULT CHARSET utf8 COLLATE utf8_general_ci'<br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="2-5-初始化">2.5 初始化<a class="post-anchor" href="#2-5-初始化"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">npm install<br></code></pre></td></tr></tbody></table></figure>
+
+<p>confirm configurations in /config/config.dev.js (used in development mode)，确认/config/config.dev.js 中的配置(.dev.js 后缀表示用于开发模式)。</p>
+<h4 id="2-6-安装-amp-amp-TypeScript-编译">2.6 安装 && TypeScript 编译<a class="post-anchor" href="#2-6-安装-amp-amp-TypeScript-编译"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">npm install -g typescript<br>npm run build<br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="2-7初始化数据库表">2.7初始化数据库表<a class="post-anchor" href="#2-7初始化数据库表"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">npm run create-db<br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="2-8执行-mocha-测试用例和-js-代码规范检查">2.8执行 mocha 测试用例和 js 代码规范检查<a class="post-anchor" href="#2-8执行-mocha-测试用例和-js-代码规范检查"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">npm run check<br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="2-9-启动开发模式的服务器-监视并在发生代码变更时自动重启">2.9 启动开发模式的服务器 监视并在发生代码变更时自动重启<a class="post-anchor" href="#2-9-启动开发模式的服务器-监视并在发生代码变更时自动重启"></a></h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">npm run dev<br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-生产模式">3. 生产模式<a class="post-anchor" href="#3-生产模式"></a></h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain"># 1. 修改/config/config.prod.js中的服务器配置<br># 2. 启动生产模式服务器<br>npm start<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h3 id="Tech-Arch">Tech Arch<a class="post-anchor" href="#Tech-Arch"></a></h3><ul>
+<li>前端架构(rap2-dolores)<ul>
+<li>React / Redux / Saga / Router</li>
+<li>Mock.js</li>
+<li>SASS / Bootstrap 4 beta</li>
+<li>server: nginx</li>
+</ul>
+</li>
+<li>后端架构(rap2-delos)<ul>
+<li>Koa</li>
+<li>Sequelize</li>
+<li>MySQL</li>
+<li>Server</li>
+<li>server: node</li>
+</ul>
+</li>
+</ul>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2017/06/29/Linux%E7%B3%BB%E7%BB%9F/">Linux01-概述&环境搭建</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2017/05/22/Elasticsearch/">Elasticsearch实现搜索</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://shitianshuai1111.github.io/2017/06/25/Rap2%E5%B9%B3%E5%8F%B0-Docker%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BA/">本文永久链接</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://shitianshuai1111.github.io">Goblin</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"1N0I5U2khpyyIWzEvEbhMsGG-gzGzoHsz\",\"API_KEY\":\"fHCBuIOooriC0nhgPQSkYd3w\"},\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

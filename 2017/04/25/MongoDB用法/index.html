@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="Java技术记录&amp;分享" />
+    
+    <title>
+      MongoDB用法 - Goblin&#39; Blog
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Goblin' Blog" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB用法"><span class="toc-text">MongoDB用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-java代码查询mongo的数据"><span class="toc-text">2. java代码查询mongo的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-mongo的分页与排序"><span class="toc-text">3. mongo的分页与排序</span></a></li></ol></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/friends" class="">
+          Friends
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">Goblin</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">Goblin</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/friends" class="">
+            Friends
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/shitianshuai1111" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="https://www.zhihu.com/people/yue-xia-hun-xi" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="https://weibo.com/u/5670783132" target="_block">
+              <span class="iconfont icon-weibo"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">MongoDB用法</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2017/04/25</span>
+        </span>
+
+        
+          <span class="item leancloud-visitors" id="/2017/04/25/MongoDB%E7%94%A8%E6%B3%95/" data-flag-title="MongoDB用法">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Code">Code</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/干货">干货</a>
+                  
+                
+                  
+                    <a href="/tags/笔记">笔记</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h1 id="MongoDB用法">MongoDB用法<a class="post-anchor" href="#MongoDB用法"></a></h1><p>##1. mongoDB存储数据</p>
+<ol>
+<li><p>创建集合Collection -> 对应传统数据库的表table</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">命令: db.createCollection(name, options) <br><br>eg:<br>db.createCollection("mycol", {capped: true, autoIndexId: true, size: 6142800, max: 10000 })<br><br><span class="hljs-bullet">1. </span>name是集合的名字<br><span class="hljs-bullet">2. </span>options为集合的可选参数<br><span class="hljs-code">	● capped 布尔(如果为 true，则创建固定集合。固定集合是指有着固定大小的集合，当达到最大值时，它会自动覆盖最早的文档。当该值为 true 时，必须指定 size 参数。</span><br><span class="hljs-code">    ●autoIndexId 布尔 如为 true，自动在_id字段创建索引。默认为false。</span><br><span class="hljs-code">    ●size 数值 为固定集合指定一个最大值，以千字节计（KB）。如果 capped 为 true，也需要指定该字段。</span><br><span class="hljs-code">    ●max 数值	指定固定集合中包含文档的最大数量。</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>插入文档</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">命令: db.COLLECTION_NAME.insert(document)<br><br>eg:<br>db.col.insert({<br><span class="hljs-code">    "_id": ObjectId("5dfb71b9f6f3fb2a9e1bfb46"),</span><br><span class="hljs-code">    "ASPD_ID": "10288094",</span><br><span class="hljs-code">    "ASPD_Nm": "缘定三生炽热红25g（电子渠道）",</span><br><span class="hljs-code">    ...</span><br><span class="hljs-code">    "Br_Sell_Prc": "598",</span><br><span class="hljs-code">    "Can_Bybk_Ind": "0",</span><br><span class="hljs-code">    "Co_Nm": "紫金矿业集团黄金珠宝有限公司",</span><br><span class="hljs-code">    "Wght_UnCd": "0702"</span><br>})<br></code></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>插入文档你也可以使用 <code>db.COLLECTION_NAME.save(document)</code> 命令。如果不指定 _id 字段 save() 方法类似于 insert() 方法。如果指定 _id 字段，则会更新该 _id 的数据。即通过传入的文档来替换已有文档.</p>
+<p>以及: </p>
+<ul>
+<li><code>db.COLLECTION_NAME.insertOne()</code>:向指定集合中插入一条文档数据</li>
+<li><code>db.COLLECTION_NAME.insertMany()</code>:向指定集合中插入多条文档数据</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<ol start="3">
+<li><p>更新文档</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">db.COLLECTION_NAME.update(<br>   <span class="xml"><span class="hljs-tag"><<span class="hljs-name">query</span>></span></span>,<br>   <span class="xml"><span class="hljs-tag"><<span class="hljs-name">update</span>></span></span>,<br>   {<br><span class="hljs-code">     upsert: <boolean>,</span><br><span class="hljs-code">     multi: <boolean>,</span><br><span class="hljs-code">     writeConcern: <document></span><br>   }<br>)<br><br>eg:<br>db.COLLECTION_NAME.update(<br>{'ASPD_Nm':'缘定三生炽热红25g（电子渠道）'}, <br>{$set:{'ASPD_Nm':'缘定三生炽热红25g（线下渠道）'})<br><br><span class="hljs-bullet">- </span>以上命令就可以实现: <br>把ASPD<span class="hljs-emphasis">_Nm为缘定三生炽热红25g（电子渠道）的数据中的ASPD_</span>Nm字段的内容, 修改为ASPD_Nm':'缘定三生炽热红25g（线下渠道）<br><br><span class="hljs-bullet">1. </span>参数说明<br>query : update的查询条件，类似sql update查询内where后面的。<br>update : update的对象和一些更新的操作符（如$,$inc...）等，也可以理解为sql update查询内set后面的<br>upsert : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。<br>multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。<br>writeConcern :可选，抛出异常的级别。<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>删除文档</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">db.COLLECTION_NAME.remove(<br>   <span class="xml"><span class="hljs-tag"><<span class="hljs-name">query</span>></span></span>,<br>   {<br><span class="hljs-code">     justOne: <boolean>,</span><br><span class="hljs-code">     writeConcern: <document></span><br>   }<br>)<br><br>eg: <br>db.COLLECTION<span class="hljs-emphasis">_NAME.remove({'ASPD_</span>Nm':'缘定三生炽热红25g（电子渠道）'})<br><br>参数说明:<br>query:(可选)删除的文档的条件。<br>justOne:(可选)如果设为 true或1，则只删除一个文档如果不设置该参数或使用默认值 false则删除所有匹配条件的文档。<br>writeConcern:(可选)抛出异常的级别。<br></code></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>如果想删除所有数据可以使用: </p>
+<p><code>db.col.remove({})</code> </p>
+<p>类似于数据库的truncate </p>
+</blockquote>
+</li>
+</ol>
+<ol start="5">
+<li><p>查询文档</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">db.COLLECTION_NAME.find(query, projection)<br><br>eg:<br>db.apsd<span class="hljs-emphasis">_data.find({"ASPD_</span>Nm":"缘定三生炽热红25g（电子渠道）", "Co_Nm":"紫金矿业集团黄金珠宝有限公司"}).pretty()<br><br>参数说明: <br>query: 可选,使用查询操作符指定查询条件<br>projection: 可选,使用投影操作符指定返回的键。查询时返回文档中所有键值, 只需省略该参数即可（默认省略）。<br>● 可以在查询后追加.pretty()方法使得结果更易读<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<blockquote>
+<p>查询常见的有and与or两种关系.</p>
+<p>and查询可以直接在查询语句中 “ , “分隔, </p>
+<p>而or则需要使用$or: </p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">db.COLLECTION_NAME.find({<br>"likes": {$gt:50}, <br>$or: [{"ASPD<span class="hljs-emphasis">_Nm":"缘定三生炽热红25g（电子渠道）", "Co_</span>Nm":"紫金矿"}]<br>}).pretty()<br></code></pre></td></tr></tbody></table></figure>
+</blockquote>
+<h2 id="2-java代码查询mongo的数据">2. java代码查询mongo的数据<a class="post-anchor" href="#2-java代码查询mongo的数据"></a></h2><p>postgresql中, 基金/ 保险/ 金条/ 贵金属表都有一个code对应mongo里的一条或多条数据</p>
+<ol>
+<li><p>引依赖</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag"><<span class="hljs-name">dependencies</span>></span><br>    <span class="hljs-comment"><!-- mongodb --></span><br>    <span class="hljs-tag"><<span class="hljs-name">dependency</span>></span><br>        <span class="hljs-tag"><<span class="hljs-name">groupId</span>></span>org.springframework.boot<span class="hljs-tag"></<span class="hljs-name">groupId</span>></span><br>        <span class="hljs-tag"><<span class="hljs-name">artifactId</span>></span>spring-boot-starter-data-mongodb<span class="hljs-tag"></<span class="hljs-name">artifactId</span>></span><br>    <span class="hljs-tag"></<span class="hljs-name">dependency</span>></span><br><span class="hljs-tag"></<span class="hljs-name">dependencies</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li>以基金的详情查询为例: </li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//创建查询对象</span><br>Query query = <span class="hljs-keyword">new</span> Query();<br>Criteria criteria = <span class="hljs-keyword">new</span> Criteria();<br><span class="hljs-comment">//根据主键在postgresql中查询出当前查询的基金对象</span><br>ProductFund fund = fundMapper.selectByPrimaryKey(productId);<br><span class="hljs-comment">//使用query构建查询条件</span><br>query = <span class="hljs-keyword">new</span> Query(Criteria.where(<span class="hljs-string">"code"</span>).is(fund.getCode()));<br>dataSet = <span class="hljs-string">"fund_detail_data"</span>;<br>query.addCriteria(criteria);<br><span class="hljs-comment">//用mongoTemplate的查询方法, 入参:查询条件对象query, 返回类型以及要查询的集合</span><br>Map data = mongoTemplate.findOne(query, Map<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">dataSet</span>)</span>;<br><span class="hljs-comment">//拿到的data是map类型的结构, 列名对应内容. 与存入mongo里的bson类型一致.</span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<ol start="3">
+<li>结果data的结构(<em>也是mongodb里存储的数据结构</em>)如下所示:</li>
+</ol>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs bson">{<br>    "_id": ObjectId("5dfb71baf6f3fb2a9e1bfb69"),<br>    "ASPD_ID": "10279468",<br>    "ASPD_Nm": "百变小金猪（电子渠道）",<br>    "Acpt_Dntn_Inst_Nm": "",<br>    "AlSal_Ind": "1",<br>    "Ast_RcmdInf_Intd_Cmnt": "《百变小金猪》运用了猪元素与可爱表情相结合进行设计...",<br>    "AtchURL_Adr": "",<br>    "Br_Prmt_MtdCd": ""<br>	...<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<ol start="4">
+<li><p>如果在查询时排除一些字段, 可以: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//eg: 返回结果过滤_id, Ins_PD_Trl_Cd字段</span><br>query.fields().exclude(<span class="hljs-string">"_id"</span>);<br>query.fields().exclude(<span class="hljs-string">"Ins_PD_Trl_Cd"</span>);<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>增加一些查询的筛选条件, 可以: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//eg: 只查PM_PD_ID等于贵金属的code的数据</span><br>criteria.and(<span class="hljs-string">"PM_PD_ID"</span>).is(metal.getCode());<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<h2 id="3-mongo的分页与排序">3. mongo的分页与排序<a class="post-anchor" href="#3-mongo的分页与排序"></a></h2><ol>
+<li><p>分页: </p>
+<p>分页可以使用默认的skip，limit关键字结合的方式来实现, 适用于中小数据量. </p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">//第一页<br>db.COLLECTION_NAME.find().limit (10)<br>//第二页<br>db.COLLECTION_NAME.find().skip(10).limit(10)<br>//第三页<br>db.COLLECTION_NAME.find().skip(20).limit(10)<br></code></pre></td></tr></tbody></table></figure>
+
+<p>但是在查询时会扫描全表. 然后再返回结果.</p>
+</li>
+</ol>
+<blockquote>
+<p> 解决的方法是: 可以先查出当前页第一条, 然后顺序数pageSize条</p>
+</blockquote>
+<ol start="2">
+<li><p>排序:</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">db.students.find({ <span class="hljs-emphasis">_id:{ $gt: startValue}}).sort({_</span>id: 1})});<br>1是升序, -1是降序<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2017/05/22/Elasticsearch/">Elasticsearch实现搜索</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/">图片上传策略之OSS</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://shitianshuai1111.github.io/2017/04/25/MongoDB%E7%94%A8%E6%B3%95/">本文永久链接</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://shitianshuai1111.github.io">Goblin</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\",\"QQ\",\"douban\",\"facebook\",\"twitter\",\"google\"],\"valine\":{\"API_ID\":\"1N0I5U2khpyyIWzEvEbhMsGG-gzGzoHsz\",\"API_KEY\":\"fHCBuIOooriC0nhgPQSkYd3w\"},\"service_worker\":{\"open\":false}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
