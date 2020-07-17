@@ -30,7 +30,7 @@ define(['jquery', 'util'], function($, util) {
 
   function getSeatchData() {
     let content = getStatic()
-    if (content) {
+    if (!content) {
       return fetch('/content.json', { method: 'GET' })
         .then(resp => resp.json())
         .then(json => {

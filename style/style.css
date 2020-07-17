@@ -2451,6 +2451,9 @@ a {
   height: 0.2rem;
   background-color: #09f;
 }
+th {
+  text-align: left;
+}
 #container {
   display: -webkit-box;
   display: -moz-box;
@@ -2480,7 +2483,7 @@ a {
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  max-width: 700px;
+  max-width: 1100px;
   padding: 2rem;
 }
 #container .main footer {
