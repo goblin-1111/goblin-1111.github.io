@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shitianshuai1111.github.io/"/>
-  <updated>2020-04-28T11:23:20.911Z</updated>
+  <updated>2020-07-17T09:07:03.795Z</updated>
   <id>https://shitianshuai1111.github.io/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实用链接</title>
+    <link href="https://shitianshuai1111.github.io/2020/07/17/%E5%AE%9E%E7%94%A8%E9%93%BE%E6%8E%A5/"/>
+    <id>https://shitianshuai1111.github.io/2020/07/17/%E5%AE%9E%E7%94%A8%E9%93%BE%E6%8E%A5/</id>
+    <published>2020-07-17T09:06:27.164Z</published>
+    <updated>2020-07-17T09:07:03.795Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;hexo 文章加密: &lt;a href=&quot;https://blog.csdn.net/weixin_33962621/article/details/93981099&quot; target=&quot;_blank&quot; rel=&quot;noopene
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Jenkins</title>
+    <link href="https://shitianshuai1111.github.io/2020/07/16/Jenkins/"/>
+    <id>https://shitianshuai1111.github.io/2020/07/16/Jenkins/</id>
+    <published>2020-07-16T13:38:19.455Z</published>
+    <updated>2020-07-17T10:06:52.758Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;rpm包启动&lt;/p&gt;
+&lt;p&gt;service jenkins start&lt;/p&gt;
+&lt;p&gt;service jenkins stop&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog-snap.oss-cn-beijing
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vue</title>
+    <link href="https://shitianshuai1111.github.io/2020/07/16/Vue/"/>
+    <id>https://shitianshuai1111.github.io/2020/07/16/Vue/</id>
+    <published>2020-07-16T06:21:56.450Z</published>
+    <updated>2020-07-17T05:16:48.148Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;Vue&quot;&gt;Vue&lt;a class=&quot;post-anchor&quot; href=&quot;#Vue&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;只关注 html css js 视图层, 刷新后台给的数据 &lt;a href=&quot;https://cn.vu
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Docker网络</title>
+    <link href="https://shitianshuai1111.github.io/2020/07/13/Docker%E7%BD%91%E7%BB%9C/"/>
+    <id>https://shitianshuai1111.github.io/2020/07/13/Docker%E7%BD%91%E7%BB%9C/</id>
+    <published>2020-07-13T14:21:16.887Z</published>
+    <updated>2020-07-16T03:08:33.646Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;Docker网络&quot;&gt;Docker网络&lt;a class=&quot;post-anchor&quot; href=&quot;#Docker网络&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;理解docker0&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>JetBrain全家桶破解</title>
@@ -39,32 +123,6 @@
       <category term="软件" scheme="https://shitianshuai1111.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
     
       <category term="破解" scheme="https://shitianshuai1111.github.io/tags/%E7%A0%B4%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac启动各项服务 终端命令</title>
-    <link href="https://shitianshuai1111.github.io/2020/03/31/Mac%E5%90%AF%E5%8A%A8%E5%90%84%E9%A1%B9%E6%9C%8D%E5%8A%A1/"/>
-    <id>https://shitianshuai1111.github.io/2020/03/31/Mac%E5%90%AF%E5%8A%A8%E5%90%84%E9%A1%B9%E6%9C%8D%E5%8A%A1/</id>
-    <published>2020-03-31T14:08:25.000Z</published>
-    <updated>2020-04-13T06:48:34.370Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;Mac如何启动各项服务&quot;&gt;Mac如何启动各项服务&lt;a class=&quot;post-anchor&quot; href=&quot;#Mac如何启动各项服务&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h2 id=&quot;一-Redis&quot;&gt;一. Redis&lt;a cla
-      
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://shitianshuai1111.github.io/categories/linux/"/>
-    
-    
-      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="命令行" scheme="https://shitianshuai1111.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
     
   </entry>
   
@@ -120,11 +178,37 @@
   </entry>
   
   <entry>
+    <title>Ngrok内网穿透</title>
+    <link href="https://shitianshuai1111.github.io/2017/07/26/Ngrok%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
+    <id>https://shitianshuai1111.github.io/2017/07/26/Ngrok%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</id>
+    <published>2017-07-26T14:24:25.000Z</published>
+    <updated>2020-07-16T03:07:44.194Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;Ngrok内网穿透&quot;&gt;Ngrok内网穿透&lt;a class=&quot;post-anchor&quot; href=&quot;#Ngrok内网穿透&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;官网:  &lt;a href=&quot;http://www.ngrok.cc/
+      
+    
+    </summary>
+    
+    
+      <category term="Application" scheme="https://shitianshuai1111.github.io/categories/Application/"/>
+    
+    
+      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="软件" scheme="https://shitianshuai1111.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux01-概述&amp;环境搭建</title>
     <link href="https://shitianshuai1111.github.io/2017/06/29/Linux%E7%B3%BB%E7%BB%9F/"/>
     <id>https://shitianshuai1111.github.io/2017/06/29/Linux%E7%B3%BB%E7%BB%9F/</id>
     <published>2017-06-29T04:24:25.000Z</published>
-    <updated>2020-04-28T08:35:50.363Z</updated>
+    <updated>2020-07-04T04:02:03.210Z</updated>
     
     <summary type="html">
     
@@ -153,7 +237,7 @@
     <link href="https://shitianshuai1111.github.io/2017/06/25/Rap2%E5%B9%B3%E5%8F%B0-Docker%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BA/"/>
     <id>https://shitianshuai1111.github.io/2017/06/25/Rap2%E5%B9%B3%E5%8F%B0-Docker%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BA/</id>
     <published>2017-06-25T14:24:25.000Z</published>
-    <updated>2020-07-03T12:29:07.070Z</updated>
+    <updated>2020-07-17T08:40:53.497Z</updated>
     
     <summary type="html">
     
@@ -165,7 +249,7 @@
     </summary>
     
     
-      <category term="linux" scheme="https://shitianshuai1111.github.io/categories/linux/"/>
+      <category term="Linux" scheme="https://shitianshuai1111.github.io/categories/Linux/"/>
     
     
       <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
@@ -177,14 +261,11 @@
     <link href="https://shitianshuai1111.github.io/2017/05/22/Elasticsearch/"/>
     <id>https://shitianshuai1111.github.io/2017/05/22/Elasticsearch/</id>
     <published>2017-05-22T13:50:25.000Z</published>
-    <updated>2020-04-23T12:21:08.469Z</updated>
+    <updated>2020-07-17T08:40:53.493Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h1 id=&quot;Elasticsearch&quot;&gt;Elasticsearch&lt;a class=&quot;post-anchor&quot; href=&quot;#Elasticsearch&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h2 id=&quot;一-是什么&quot;&gt;一. 是什么&lt;a c
-      
+      有东西被加密了, 请输入密码查看.
     
     </summary>
     
@@ -195,6 +276,8 @@
       <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
       <category term="业务" scheme="https://shitianshuai1111.github.io/tags/%E4%B8%9A%E5%8A%A1/"/>
+    
+      <category term="Encrypted" scheme="https://shitianshuai1111.github.io/tags/Encrypted/"/>
     
   </entry>
   
@@ -231,7 +314,7 @@
     <link href="https://shitianshuai1111.github.io/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/"/>
     <id>https://shitianshuai1111.github.io/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/</id>
     <published>2017-03-31T10:50:25.000Z</published>
-    <updated>2020-04-16T10:54:33.237Z</updated>
+    <updated>2020-07-16T03:08:45.906Z</updated>
     
     <summary type="html">
     
