@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-实体类的生日是Date类型-直接返回前端-前端难处理"><span class="toc-text">1. 实体类的生日是Date类型, 直接返回前端, 前端难处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-根据经纬度计算距离"><span class="toc-text">2. 根据经纬度计算距离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-新增代码与mybatis逆向工程冲突问题"><span class="toc-text">3. 新增代码与mybatis逆向工程冲突问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-阿里云发送短信"><span class="toc-text">4. 阿里云发送短信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-BindingResult"><span class="toc-text">5.2 BindingResult</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-实体类的生日是Date类型-直接返回前端-前端难处理"><span class="toc-text">1. 实体类的生日是Date类型, 直接返回前端, 前端难处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-根据经纬度计算距离"><span class="toc-text">2. 根据经纬度计算距离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-新增代码与mybatis逆向工程冲突问题"><span class="toc-text">3. 新增代码与mybatis逆向工程冲突问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-阿里云发送短信"><span class="toc-text">4. 阿里云发送短信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-BindingResult"><span class="toc-text">5.2 BindingResult</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-实体类的生日是Date类型-直接返回前端-前端难处理-1"><span class="toc-text">1. 实体类的生日是Date类型, 直接返回前端, 前端难处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-根据经纬度计算距离-1"><span class="toc-text">2. 根据经纬度计算距离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-新增代码与mybatis逆向工程冲突问题-1"><span class="toc-text">3. 新增代码与mybatis逆向工程冲突问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-阿里云发送短信-1"><span class="toc-text">4. 阿里云发送短信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-BindingResult-1"><span class="toc-text">5.2 BindingResult</span></a></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -205,11 +205,11 @@
             <span>
                 
                   
-                    <a href="/tags/笔记">笔记</a>
+                    <a href="/tags/业务">业务</a>
                   
                 
                   
-                    <a href="/tags/业务">业务</a>
+                    <a href="/tags/笔记">笔记</a>
                   
                 
             </span>
@@ -299,7 +299,95 @@
 
 
 
-<h5 id="5-2-BindingResult">5.2 BindingResult<a class="post-anchor" href="#5-2-BindingResult"></a></h5><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+<h5 id="5-2-BindingResult">5.2 BindingResult<a class="post-anchor" href="#5-2-BindingResult"></a></h5><hr>
+<p>title: 爬坑之路<br>date: 2017/3/31 18:50:25<br>categories:</p>
+<ul>
+<li>Code<br>tags:</li>
+<li>业务</li>
+<li>笔记<br>top: 0</li>
+</ul>
+<hr>
+<h4 id="1-实体类的生日是Date类型-直接返回前端-前端难处理-1">1. 实体类的生日是Date类型, 直接返回前端, 前端难处理<a class="post-anchor" href="#1-实体类的生日是Date类型-直接返回前端-前端难处理-1"></a></h4><p>使用注解: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@JsonFormat</span>(shape=JsonFormat.Shape.STRING,pattern=<span class="hljs-string">"yyyy-MM-dd"</span>,timezone=<span class="hljs-string">"GMT+8"</span>)<br>    <span class="hljs-keyword">private</span> Date birthday;<br></code></pre></td></tr></tbody></table></figure>
+
+<p>就可在传给前端时, 格式化日期为: </p>
+<figure class="highlight json"><table><tbody><tr><td class="code"><pre><code class="hljs json">{<br>    <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,<br>    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"操作成功"</span>,<br>    <span class="hljs-attr">"data"</span>: {<br>        <span class="hljs-attr">"birthday"</span>: <span class="hljs-string">"2020-04-08"</span>,<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="2-根据经纬度计算距离-1">2. 根据经纬度计算距离<a class="post-anchor" href="#2-根据经纬度计算距离-1"></a></h4><blockquote>
+<p>已有用户的经纬度和商家的经纬度, 通过mysql sql语句根据距离排序查询出所有商家, 并将计算出的距离返回. </p>
+<p>SQL语句如下: </p>
+<p>参数含义locationX-用户经度</p>
+<p>locationY-用户纬度</p>
+<p>lng-数据库中商家经度</p>
+<p>lat-数据库中商家纬度</p>
+</blockquote>
+<p>将距离计算出, 别名distance和其他数据一起返回</p>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag"><<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"selectAllByDistance"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"ydListWithDistanceMap"</span>></span><br>      SELECT<br>      DISTINCT *,(<br>      round(6371392.89 * acos (<br>      cos ( radians(#{locationY,jdbcType=DECIMAL}) )<br>      * cos( radians( lat ) )<br>      * cos( radians( lng ) - radians(#{locationX,jdbcType=DECIMAL}) )<br>      + sin ( radians(#{locationY,jdbcType=DECIMAL}) )<br>      * sin( radians( lat ) )<br>      ),2<br>      ) )AS distance<br>      FROM  yd_shop ORDER BY distance<br><span class="hljs-tag"></<span class="hljs-name">select</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>经测试 误差与百度地图计算距离控制在三十米之内.</p>
+<h4 id="3-新增代码与mybatis逆向工程冲突问题-1">3. 新增代码与mybatis逆向工程冲突问题<a class="post-anchor" href="#3-新增代码与mybatis逆向工程冲突问题-1"></a></h4><blockquote>
+<p>新增的代码会被mybatis逆向工程覆盖, 如果配置关闭覆盖, 那么以后对该表做改动的时候又要重写新增的部分. 解决: 将新增的内容, 写在新建Dao中, 令xml文件继承源mapper.xml, 这样新增内容时, 就不担心被覆盖了.</p>
+</blockquote>
+<figure class="highlight xml"><table><tbody><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta"><?xml version="1.0" encoding="UTF-8"?></span><br><span class="hljs-meta"><!DOCTYPE <span class="hljs-meta-keyword">mapper</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span> <span class="hljs-meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>></span><br><span class="hljs-tag"><<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"com.macro.mall.portal.dao.YdShopDao"</span>></span><br>    <span class="hljs-tag"><<span class="hljs-name">resultMap</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ydListWithDistanceMap"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"com.macro.mall.portal.domain.YdShop"</span></span><br><span class="hljs-tag">               <span class="hljs-attr">extends</span>=<span class="hljs-string">"com.macro.mall.mapper.YdShopMapper.BaseResultMap"</span>></span><br>        <span class="hljs-tag"><<span class="hljs-name">result</span> <span class="hljs-attr">column</span>=<span class="hljs-string">"distance"</span> <span class="hljs-attr">jdbcType</span>=<span class="hljs-string">"DECIMAL"</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"distance"</span> /></span><br>    <span class="hljs-tag"></<span class="hljs-name">resultMap</span>></span><br><br>    <span class="hljs-tag"><<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"selectAllByDistance"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"ydListWithDistanceMap"</span>></span><br>        SELECT<br>        DISTINCT *,(<br>        round(6371392.89 * acos (<br>        cos ( radians(#{locationY,jdbcType=DECIMAL}) )<br>        * cos( radians( lat ) )<br>        * cos( radians( lng ) - radians(#{locationX,jdbcType=DECIMAL}) )<br>        + sin ( radians(#{locationY,jdbcType=DECIMAL}) )<br>        * sin( radians( lat ) )<br>        ),2<br>        ) )AS distance<br>        FROM  yd_shop ORDER BY distance<br>  <span class="hljs-tag"></<span class="hljs-name">select</span>></span><br><span class="hljs-tag"></<span class="hljs-name">mapper</span>></span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="4-阿里云发送短信-1">4. 阿里云发送短信<a class="post-anchor" href="#4-阿里云发送短信-1"></a></h4><p>工具类: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.macro.mall.portal.util;<br><br><span class="hljs-keyword">import</span> com.aliyuncs.CommonRequest;<br><span class="hljs-keyword">import</span> com.aliyuncs.CommonResponse;<br><span class="hljs-keyword">import</span> com.aliyuncs.DefaultAcsClient;<br><span class="hljs-keyword">import</span> com.aliyuncs.IAcsClient;<br><span class="hljs-keyword">import</span> com.aliyuncs.exceptions.ClientException;<br><span class="hljs-keyword">import</span> com.aliyuncs.http.MethodType;<br><span class="hljs-keyword">import</span> com.aliyuncs.profile.DefaultProfile;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.InputStream;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span> 阿里云短信工具类</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> goblin</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2020-04-14</span><br><span class="hljs-comment"> **/</span><br><span class="hljs-meta">@Slf</span>4j<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AliMessageUtils</span> </span>{<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String CONFIG_FILE = <span class="hljs-string">"rabbitmq-message.properties"</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String REGION_ID;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String ACCESS_KEY_ID;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String ACCESS_KEY_SECRET;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String SIGN_NAME;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String TEMPLATE_CODE;<br><br>    <span class="hljs-keyword">static</span> {<br>        Properties prop = <span class="hljs-keyword">new</span> Properties();<br>        <span class="hljs-comment">// 加载配置</span><br>        try (InputStream is = QiniuUtils.class.getClassLoader().getResourceAsStream("rabbitmq-message.properties")) {<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> == is) {<br>                log.error(<span class="hljs-string">"[阿里云短信工具类-初始化]失败,请提供配置文件：{}"</span>, CONFIG_FILE);<br>            } <span class="hljs-keyword">else</span> {<br>                prop.load(is);<br>            }<br>        } <span class="hljs-keyword">catch</span> (IOException e) {<br>            <span class="hljs-comment">// 几乎不可能事件，直接转换为运行时异常继续上抛</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);<br>        }<br>        REGION_ID = prop.getProperty(<span class="hljs-string">"region.id"</span>, <span class="hljs-string">""</span>);<br>        ACCESS_KEY_ID = prop.getProperty(<span class="hljs-string">"access.key.id"</span>, <span class="hljs-string">""</span>);<br>        ACCESS_KEY_SECRET = prop.getProperty(<span class="hljs-string">"access.key.secret"</span>, <span class="hljs-string">""</span>);<br>        SIGN_NAME = prop.getProperty(<span class="hljs-string">"sign.name"</span>, <span class="hljs-string">""</span>);<br>        TEMPLATE_CODE = prop.getProperty(<span class="hljs-string">"template.code"</span>, <span class="hljs-string">""</span>);<br>        log.info(<span class="hljs-string">"[阿里云工具类-初始化]完成"</span>);<br>    }<br><br>    <span class="hljs-comment">//发送短信</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendSMS</span><span class="hljs-params">(String phone, String code)</span> </span>{<br>        DefaultProfile profile = DefaultProfile.getProfile(REGION_ID, ACCESS_KEY_ID, ACCESS_KEY_SECRET);<br>        IAcsClient client = <span class="hljs-keyword">new</span> DefaultAcsClient(profile);<br><br>        <span class="hljs-comment">//拼接模板参数（验证码）value  Json格式字符串</span><br>      	<span class="hljs-comment">//您本次的验证码为：${code}，本验证码仅在5分钟内有效, 请勿告知他人, 如果不是您本人操作. 请忽略此信息. 欢迎您的加入!</span><br>        String codeSMS = <span class="hljs-string">"{\"code\":\""</span> + code + <span class="hljs-string">"\"}"</span>;<br><br>        CommonRequest request = <span class="hljs-keyword">new</span> CommonRequest();<br>        request.setMethod(MethodType.POST);<br>        request.setDomain(<span class="hljs-string">"dysmsapi.aliyuncs.com"</span>);<br>        request.setVersion(<span class="hljs-string">"2017-05-25"</span>);<br>        request.setAction(<span class="hljs-string">"SendSms"</span>);<br>        request.putQueryParameter(<span class="hljs-string">"RegionId"</span>, REGION_ID);<br>        request.putQueryParameter(<span class="hljs-string">"PhoneNumbers"</span>, phone);<br>        request.putQueryParameter(<span class="hljs-string">"SignName"</span>, SIGN_NAME);<br>        request.putQueryParameter(<span class="hljs-string">"TemplateCode"</span>, TEMPLATE_CODE);<br>        request.putQueryParameter(<span class="hljs-string">"TemplateParam"</span>, codeSMS);<br><br>        <span class="hljs-keyword">try</span> {<br>            CommonResponse response = client.getCommonResponse(request);<br>            System.out.println(response.getData());<br>        } <span class="hljs-keyword">catch</span> (ClientException e) {<br>            e.printStackTrace();<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>配置文件</p>
+<p>rabbitmq-message.properties</p>
+<figure class="highlight properties"><table><tbody><tr><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#地区</span><br><span class="hljs-meta">region.id</span>=<span class="hljs-string">cn-hangzhou</span><br><span class="hljs-comment">#access.key.id</span><br><span class="hljs-meta">access.key.id</span>=<span class="hljs-string">access.key.id</span><br><span class="hljs-comment">#access.key.secret</span><br><span class="hljs-meta">access.key.secret</span>=<span class="hljs-string">access.key.secret</span><br><span class="hljs-comment">#签名</span><br><span class="hljs-meta">sign.name</span>=<span class="hljs-string">签名</span><br><span class="hljs-comment">#短信模板</span><br><span class="hljs-meta">template.code</span>=<span class="hljs-string">短信模板</span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>####5. 使用@Valid+BindingResult进行controller参数校验</p>
+<p>场景: 做后台的修改等操作时, 我们需要在后台验证传入的表单是否正确, 因为前端的验证可能是由postman等代发的, 前端表单校验不能保证绝对安全.</p>
+<p>通常我们会定义一个要接收表单的实体类, 这里给出一个例子, 是品牌相关的类 PmsBrandParam:</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.macro.mall.dto;<br><br><span class="hljs-keyword">import</span> com.macro.mall.validator.FlagValidator;<br><span class="hljs-keyword">import</span> io.swagger.annotations.ApiModelProperty;<br><br><span class="hljs-keyword">import</span> javax.validation.constraints.Min;<br><span class="hljs-keyword">import</span> javax.validation.constraints.NotEmpty;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 品牌传递参数</span><br><span class="hljs-comment"> * Created by goblin.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PmsBrandParam</span> </span>{<br><br>    <span class="hljs-meta">@NotEmpty</span>(message = <span class="hljs-string">"名称不能为空"</span>)<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-meta">@Min</span>(value = <span class="hljs-number">0</span>, message = <span class="hljs-string">"排序最小为0"</span>)<br>    <span class="hljs-keyword">private</span> Integer sort;<br>   <br>    <span class="hljs-meta">@FlagValidator</span>(value = {<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>}, message = <span class="hljs-string">"厂家状态不正确"</span>)<br>    <span class="hljs-keyword">private</span> Integer factoryStatus;<br>   <br>    <span class="hljs-meta">@FlagValidator</span>(value = {<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>}, message = <span class="hljs-string">"显示状态不正确"</span>)<br>    <span class="hljs-keyword">private</span> Integer showStatus;<br>    <br>    <span class="hljs-meta">@NotEmpty</span>(message = <span class="hljs-string">"品牌logo不能为空"</span>)<br>    <span class="hljs-keyword">private</span> String logo;<br>   <br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>这里省略了部分字段, 通常这些子弹都是与数据库所需字段一一对应的, 我们要保存一个新数据时, 通过这个参数类保证数据正确.</p>
+<p>再来看一下Controller: (这里的BindingResult, 会在下文介绍)</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiOperation</span>(value = <span class="hljs-string">"更新品牌"</span>) <span class="hljs-comment">//SWAGGER</span><br><span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/update/{id}"</span>, method = RequestMethod.POST)<br><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> CommonResult <span class="hljs-title">update</span><span class="hljs-params">(@PathVariable(<span class="hljs-string">"id"</span>)</span> Long id,</span><br><span class="hljs-function">                           @Validated @RequestBody PmsBrandParam pmsBrandParam,</span><br><span class="hljs-function">                           BindingResult result) </span>{<br>  CommonResult commonResult;<br>  <span class="hljs-keyword">int</span> count = brandService.updateBrand(id, pmsBrandParam);<br>  <span class="hljs-keyword">if</span> (count == <span class="hljs-number">1</span>) {<br>    commonResult = CommonResult.success(count);<br>  } <span class="hljs-keyword">else</span> {<br>    commonResult = CommonResult.failed();<br>  }<br>  <span class="hljs-keyword">return</span> commonResult;<br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<blockquote>
+<p>在PmsBrandParam类的前面, 用到了@Validated注解, 这个注解的作用是提醒Spring Validation验证框架对参数进行验证.</p>
+</blockquote>
+<p>其实除了@Validated, 还有一个注解很常见, @Valid. 那么什么时候使用这两个注解呢? </p>
+<p>这就需要先了解这二者的不同.</p>
+<ol>
+<li>@Validated支持分组功能, 可以在入参验证时, 根据不同的分组采用不同的验证机制. 而@Valid不支持</li>
+<li>@Validated可以注解在方法, 构造函数, 方法参数上, @Valid在此基础上, 还可以注解在<strong>成员属性(字段)</strong>上</li>
+</ol>
+<blockquote>
+<p>留意一下这个区别, 因为这直接影响是否支持嵌套验证的功能, 下面会详细解释</p>
+</blockquote>
+<p><这部分内容参考 <a href="https://blog.csdn.net/qq_27680317/article/details/79970590>" target="_blank" rel="noopener">https://blog.csdn.net/qq_27680317/article/details/79970590></a></p>
+<p>所谓嵌套循环, 指的是我们的PmsBrandParam中, 如果有一个成员变量是另一个实体类型, 而他的成员变量同样需要进行校验, 那么, 因为@Validated无法注释在该实体类上, 所以不能仅通过@Validated实现嵌套的校验.</p>
+<p>可行的方法为: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.macro.mall.dto;<br><br><span class="hljs-keyword">import</span> com.macro.mall.validator.FlagValidator;<br><span class="hljs-keyword">import</span> io.swagger.annotations.ApiModelProperty;<br><br><span class="hljs-keyword">import</span> javax.validation.constraints.Min;<br><span class="hljs-keyword">import</span> javax.validation.constraints.NotEmpty;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 品牌传递参数</span><br><span class="hljs-comment"> * Created by goblin.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PmsBrandParam</span> </span>{<br><br>    <span class="hljs-meta">@NotEmpty</span>(message = <span class="hljs-string">"名称不能为空"</span>)<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-meta">@Min</span>(value = <span class="hljs-number">0</span>, message = <span class="hljs-string">"排序最小为0"</span>)<br>    <span class="hljs-keyword">private</span> Integer sort;<br>   <br>    <span class="hljs-meta">@FlagValidator</span>(value = {<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>}, message = <span class="hljs-string">"厂家状态不正确"</span>)<br>    <span class="hljs-keyword">private</span> Integer factoryStatus;<br>   <br>    <span class="hljs-meta">@FlagValidator</span>(value = {<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>}, message = <span class="hljs-string">"显示状态不正确"</span>)<br>    <span class="hljs-keyword">private</span> Integer showStatus;<br>    <br>    <span class="hljs-meta">@NotEmpty</span>(message = <span class="hljs-string">"品牌logo不能为空"</span>)<br>    <span class="hljs-keyword">private</span> String logo;<br>  <br>    <span class="hljs-meta">@Valid</span> <span class="hljs-comment">// 嵌套验证必须用@Valid</span><br>    <span class="hljs-meta">@NotNull</span>(message = <span class="hljs-string">"shops不能为空"</span>)<br>    <span class="hljs-meta">@Size</span>(min = <span class="hljs-number">1</span>, message = <span class="hljs-string">"props至少要有一个自定义属性"</span>)<br>    <span class="hljs-keyword">private</span> List<YdShop> shops;<br>   <br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>注意观察最后一个字段shops, 他上面因为使用了@Valid注解, 在校验时, 会同时验证他里面的字段. 我们这里给出一个YdShop的例子, 方便理解: </p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YdShop</span> </span>{<br><br>    <span class="hljs-meta">@NotNull</span>(message = <span class="hljs-string">"id不能为空"</span>)<br>    <span class="hljs-meta">@Min</span>(value = <span class="hljs-number">1</span>, message = <span class="hljs-string">"id必须为正整数"</span>)<br>    <span class="hljs-keyword">private</span> Long id;<br><br>    <span class="hljs-meta">@NotBlank</span>(message = <span class="hljs-string">"name不能为空"</span>)<br>    <span class="hljs-keyword">private</span> String name;<br><br>}<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>#####5.1 常用注解校验</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="code"><pre><code class="hljs markdown">常用校验注解:<br><br>@Null 只能是null<br>@NotNull 不能为null 注意用在基本类型上无效，基本类型有默认初始值<br>@AssertFalse 必须为false<br>@AssertTrue 必须是true<br><br>字符串/数组/集合检查：(字符串本身就是个数组)<br>@Pattern(regexp="reg") 验证字符串满足正则<br>@Size(max, min) 验证字符串、数组、集合长度范围<br>@NotEmpty 验证字符串不为空或者null<br>@NotBlank 验证字符串不为null或者trim()后不为空<br><br>数值检查：同时能验证一个字符串是否是满足限制的数字的字符串<br>@Max 规定值得上限int<br>@Min 规定值得下限<br>@DecimalMax("10.8") 以传入字符串构建一个BigDecimal，规定值要小于这个值 <br>@DecimalMin 可以用来限制浮点数大小<br>@Digits(int1, int2) 限制一个小数，整数精度小于int1；小数部分精度小于int2<br>@Digits 无参数，验证字符串是否合法<br>@Range(min=long1,max=long2) 检查数字是否在范围之间<br>这些都包括边界值<br><br>日期检查：Date/Calendar<br>@Post 限定一个日期，日期必须是过去的日期<br>@Future 限定一个日期，日期必须是未来的日期<br><br>其他验证：<br>@Vaild 递归验证，用于对象、数组和集合，会对对象的元素、数组的元素进行一一校验<br>@Email 用于验证一个字符串是否是一个合法的右键地址，空字符串或null算验证通过<br>@URL(protocol=,host=,port=,regexp=,flags=) 用于校验一个字符串是否是合法UR<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<h5 id="5-2-BindingResult-1">5.2 BindingResult<a class="post-anchor" href="#5-2-BindingResult-1"></a></h5><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
 
   
     <div class="post-reward">
@@ -325,10 +413,12 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/">图片上传策略之OSS</a>
+          <a href="/2017/04/25/MongoDB%E7%94%A8%E6%B3%95/">MongoDB用法</a>
         
     </div>
     <div class="item right">
+        
+          <a href="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/">图片上传策略之OSS</a>
         
     </div>
   </div>
