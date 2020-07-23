@@ -16,7 +16,7 @@
     <meta name="description" content="Java技术记录&amp;分享" />
     
     <title>
-      Categories - Goblin&#39; Blog
+      iterm2 - Goblin&#39; Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mac神器Iterm2的Shell-Integration的用法和注意事项"><span class="toc-text">Mac神器Iterm2的Shell Integration的用法和注意事项</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -65,7 +70,7 @@
           Archives
         </a>
         
-        <a href="/categories" class="current">
+        <a href="/categories" class="">
           Categories
         </a>
         
@@ -119,7 +124,7 @@
             Archives
           </a>
           
-          <a href="/categories" class="current">
+          <a href="/categories" class="">
             Categories
           </a>
           
@@ -164,91 +169,112 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-     
-        <div class="title">
-            Categories - Code
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/03/31/Docker%E7%9A%84%E7%94%A8%E6%B3%95/" title="Docker怎么玩~">
-                <span>2020/03/31</span>
-                <span>Docker怎么玩~</span>
-            </a>
-            </article>
-            
-
-
-    
-    </div>
-    </section>
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2017" >
-                2017
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2017/05/22/Elasticsearch/" title="Elasticsearch实现搜索">
-                <span>2017/05/22</span>
-                <span>Elasticsearch实现搜索</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2017/04/25/MongoDB%E7%94%A8%E6%B3%95/" title="MongoDB用法">
-                <span>2017/04/25</span>
-                <span>MongoDB用法</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2017/03/31/%E7%88%AC%E5%9D%91/" title="爬坑之路">
-                <span>2017/03/31</span>
-                <span>爬坑之路</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2017/03/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E7%AD%96%E7%95%A5/" title="图片上传策略之OSS">
-                <span>2017/03/31</span>
-                <span>图片上传策略之OSS</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <span class="page-number current">1</span>
-</div>
-</div>
+      <div class="title">iterm2</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/07/19</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2020/07/19/iterm2/" data-flag-title="iterm2">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+        
+        
+        
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h1 id="Mac神器Iterm2的Shell-Integration的用法和注意事项"><a href="https://www.cnblogs.com/soukingang/p/5570090.html" target="_blank" rel="noopener">Mac神器Iterm2的Shell Integration的用法和注意事项</a><a class="post-anchor" href="#Mac神器Iterm2的Shell-Integration的用法和注意事项"></a></h1><p>在iterm2 v3.0版本中有了个新的feature——Shell Integration，其中比较重要的功能就是可以取代传统的“rz”、“sz”（即：向服务器上传、下载文件）</p>
+<p>具体的用法可以参见官网所示：</p>
+<p><a href="https://iterm2.com/documentation-shell-integration.html" target="_blank" rel="noopener">https://iterm2.com/documentation-shell-integration.html</a></p>
+<p>下面列出一些特别要注意的四项内容（这四项内容是我踩过的坑）</p>
+<p>注意项一：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">curl -L https://iterm2.com/misc/install_shell_integration.sh | bash<br></code></pre></td></tr></tbody></table></figure>
+
+<p>在服务器和本机都要执行这条命令，或者是通过“Iterm2”->”Install Shell Integration”来执行这条命令，执行完毕之后，会发现无论是服务器、还是本机在“命令提示符”最前面有一个蓝色的小三角块（When shell integration is enabled, iTerm2 automatically adds a mark at each command prompt. Marks are indicated visually by a small blue triangle in the left margin.)</p>
+<p>注意项二：</p>
+<p>若服务器的ssh端口不是22的话，需要在Mac本地配置sshconfig，配置的文件名称需要特别注意一下。</p>
+<p>官网：<a href="https://gitlab.com/gnachman/iterm2/wikis/scp-not-connecting（可参考，但写的不是很详细）" target="_blank" rel="noopener">https://gitlab.com/gnachman/iterm2/wikis/scp-not-connecting（可参考，但写的不是很详细）</a></p>
+<p>配置本机（Mac）机器的sshconfig文件，切记一定要是这个文件！用官网所示的“~/.ssh/ssh_config”是不行的，亲测。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">~/.ssh/config<br></code></pre></td></tr></tbody></table></figure>
+
+<p>配置的内容，若想让它具有通用性的话，可以直接写（例如，我们的服务器端口是2222）：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">Host *<br>    Port 2222<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>注意项三：</p>
+<p>若服务器的hostname不是所连接的IP地址的话（注：可使用hostname -f命令来查询），就需要在hosts文件中做好“hostname”和“ip”的对应关系，否则本机是无法识别出服务器的hostname的（其实，这个也是与办公环境有关的）</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">/etc/hosts<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<p>注意项四：</p>
+<p>上传文件的时候，在拖拽文件的同时，需按住“Option”键</p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/2020/07/23/Docker%E5%AE%89%E8%A3%85RabbitMQ/">Docker安装RabbitMQ</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/07/17/%E5%AE%9E%E7%94%A8%E9%93%BE%E6%8E%A5/">实用链接</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://shitianshuai1111.github.io/2020/07/19/iterm2/">本文永久链接</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2020
