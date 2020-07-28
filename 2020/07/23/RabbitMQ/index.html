@@ -16,7 +16,7 @@
     <meta name="description" content="Java技术记录&amp;分享" />
     
     <title>
-      Docker安装RabbitMQ - Goblin&#39; Blog
+      RabbitMQ - Goblin&#39; Blog
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -167,7 +167,7 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">Docker安装RabbitMQ</div>
+      <div class="title">RabbitMQ</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
@@ -175,7 +175,7 @@
         </span>
 
         
-          <span class="item leancloud-visitors" id="/2020/07/23/Docker%E5%AE%89%E8%A3%85RabbitMQ/" data-flag-title="Docker安装RabbitMQ">
+          <span class="item leancloud-visitors" id="/2020/07/23/RabbitMQ/" data-flag-title="RabbitMQ">
             <span class="iconfont icon-eye1"></span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -188,17 +188,29 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><p>docker pull rabbitmq:management</p>
-<p>docker run -itd –-name rabbitmq </p>
-<p>-v /opt/rabbitmq/etc/:/etc/rabbitmq </p>
-<p>-v /opt/rabbitmq/lib/:/var/lib/rabbitmq </p>
-<p>-v /opt/rabbitmq/log/:/var/log/rabbitmq -p 5672:5672 -p 15672:15672 –restart always -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234   181d</p>
-<p>docker run -d –name rabbitmq -p 5672:5672 -p 15672:15672 –restart always -v /opt/rabbitmq/etc/:/etc/rabbitmq -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/log/:/var/log/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">启动命令 <br><br>docker run -d  --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always  -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/log/:/var/log/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d<br></code></pre></td></tr></tbody></table></figure>
+    <html><head></head><body><p>docker安装rabbitmq</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">docker pull rabbitmq:management<br><br><br><br>docker run -itd –-name rabbitmq <br>-v /opt/rabbitmq/etc/:/etc/rabbitmq <br>-v /opt/rabbitmq/lib/:/var/lib/rabbitmq <br>-v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -p 5672:5672 -p 15672:15672 --restart always -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234   181d<br><br><br>docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always -v /opt/rabbitmq/etc/:/etc/rabbitmq -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d<br><br>启动命令 <br><br>docker run -d  --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always  -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+
 
 <p>问题 一个目录挂载 一直提示没有权限 </p>
 <p>想把/etc/rabbitmq挂载到/opt/rabbitmq/etc下, 这个还没想好怎么办</p>
 <p>-v /opt/rabbitmq/etc:/etc/rabbitmq</p>
+<p>安装插件</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">进入容器内<br>docker exec -it [容器id] /bin/bash<br><br>查看rabbitmq版本信息<br>rabbitmqct status   当前版本 3.8.5 <br><br>更新 apt-get update<br><br>下载wget<br>apt-get install -y wget<br><br>下载延迟队列插件到 /opt/rabbitmq/plugins 下<br>wget https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.8.0/rabbitmq_delayed_message_exchange-3.8.0.ez<br><br>启动该插件<br>rabbitmq-plugins enable rabbitmq_delayed_message_exchange<br></code></pre></td></tr></tbody></table></figure>
+
+
+
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 添加用户</span><br>rabbitmqctl add_user <username> <password><br><span class="hljs-comment"># 删除用户</span><br>rabbitmqctl delete_user <username><br><span class="hljs-comment"># 修改用户密码</span><br>rabbitmqctl change_password <username> <newpassword><br><span class="hljs-comment"># 清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）</span><br>rabbitmqctl clear_password <username><br><span class="hljs-comment"># 设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）</span><br>rabbitmqctl set_user_tags <username> <tag><br><span class="hljs-comment"># 列出所有用户</span><br>rabbitmqctl list_users<br><span class="hljs-comment"># 创建一个vhosts</span><br>rabbitmqctl add_vhost <vhostpath><br><span class="hljs-comment"># 删除一个vhosts</span><br>rabbitmqctl delete_vhost <vhostpath><br><span class="hljs-comment"># 列出vhosts</span><br>rabbitmqctl list_vhosts [<vhostinfoitem> …]<br><span class="hljs-comment"># 针对一个vhosts给用户赋予相关权限；</span><br>rabbitmqctl set_permissions [-p <vhostpath>] <user> <conf> <write> <<span class="hljs-built_in">read</span>><br><span class="hljs-comment"># 清除一个用户对vhosts的权限；</span><br>rabbitmqctl clear_permissions [-p <vhostpath>] <username><br><span class="hljs-comment"># 列出哪些用户可以访问该vhosts；</span><br>rabbitmqctl list_permissions [-p <vhostpath>]<br><span class="hljs-comment"># 列出用户访问权限；</span><br>rabbitmqctl list_user_permissions <username><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":150,"vOffset":-10},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
 
   
@@ -240,7 +252,7 @@
       本文作者：<a href="https://shitianshuai1111.github.io">Goblin</a>
     </div>
     <div class="link">
-      永久链接：<a href="https://shitianshuai1111.github.io/2020/07/23/Docker%E5%AE%89%E8%A3%85RabbitMQ/">本文永久链接</a>
+      永久链接：<a href="https://shitianshuai1111.github.io/2020/07/23/RabbitMQ/">本文永久链接</a>
     </div>
     <div class="declare">
       版权声明：本文首发于<a href="https://shitianshuai1111.github.io">Goblin</a>的博客，转载请注明出处！
