@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shitianshuai1111.github.io/"/>
-  <updated>2020-07-24T04:10:30.040Z</updated>
+  <updated>2020-07-30T15:46:17.393Z</updated>
   <id>https://shitianshuai1111.github.io/</id>
   
   <author>
@@ -17,11 +17,51 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Redis</title>
+    <link href="https://shitianshuai1111.github.io/2020/07/30/Redis/"/>
+    <id>https://shitianshuai1111.github.io/2020/07/30/Redis/</id>
+    <published>2020-07-30T15:03:11.467Z</published>
+    <updated>2020-07-30T15:46:17.393Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;docker run -d  –name redis-hanke -p 16379:6379 –restart always  -v /data/hkapps/redis/conf/redis.conf:/etc/redis
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="https://shitianshuai1111.github.io/2020/07/30/Nginx/"/>
+    <id>https://shitianshuai1111.github.io/2020/07/30/Nginx/</id>
+    <published>2020-07-30T09:56:25.832Z</published>
+    <updated>2020-07-30T09:56:37.889Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/weixin_44259720/article/details/104696403&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https:/
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>RabbitMQ</title>
     <link href="https://shitianshuai1111.github.io/2020/07/23/RabbitMQ/"/>
     <id>https://shitianshuai1111.github.io/2020/07/23/RabbitMQ/</id>
     <published>2020-07-23T08:16:24.820Z</published>
-    <updated>2020-07-24T04:10:30.040Z</updated>
+    <updated>2020-07-30T06:47:30.652Z</updated>
     
     <summary type="html">
     
@@ -189,9 +229,9 @@
       <category term="Code" scheme="https://shitianshuai1111.github.io/categories/Code/"/>
     
     
-      <category term="干货" scheme="https://shitianshuai1111.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
-    
       <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="干货" scheme="https://shitianshuai1111.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
     
   </entry>
   
@@ -223,7 +263,7 @@
     <link href="https://shitianshuai1111.github.io/2018/06/22/NoteBook/"/>
     <id>https://shitianshuai1111.github.io/2018/06/22/NoteBook/</id>
     <published>2018-06-22T13:50:25.000Z</published>
-    <updated>2020-07-24T01:39:59.858Z</updated>
+    <updated>2020-07-30T08:30:06.129Z</updated>
     
     <summary type="html">
     
@@ -290,9 +330,9 @@
       <category term="Linux" scheme="https://shitianshuai1111.github.io/categories/Linux/"/>
     
     
-      <category term="干货" scheme="https://shitianshuai1111.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
-    
       <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="干货" scheme="https://shitianshuai1111.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
     
   </entry>
   
@@ -340,9 +380,9 @@
       <category term="Code" scheme="https://shitianshuai1111.github.io/categories/Code/"/>
     
     
-      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="业务" scheme="https://shitianshuai1111.github.io/tags/%E4%B8%9A%E5%8A%A1/"/>
+    
+      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -368,9 +408,9 @@
       <category term="Code" scheme="https://shitianshuai1111.github.io/categories/Code/"/>
     
     
-      <category term="干货" scheme="https://shitianshuai1111.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
-    
       <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="干货" scheme="https://shitianshuai1111.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
     
   </entry>
   
@@ -394,9 +434,9 @@
       <category term="Code" scheme="https://shitianshuai1111.github.io/categories/Code/"/>
     
     
-      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="业务" scheme="https://shitianshuai1111.github.io/tags/%E4%B8%9A%E5%8A%A1/"/>
+    
+      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -420,9 +460,9 @@
       <category term="Code" scheme="https://shitianshuai1111.github.io/categories/Code/"/>
     
     
-      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="业务" scheme="https://shitianshuai1111.github.io/tags/%E4%B8%9A%E5%8A%A1/"/>
+    
+      <category term="笔记" scheme="https://shitianshuai1111.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

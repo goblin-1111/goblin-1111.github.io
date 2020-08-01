@@ -189,12 +189,9 @@
       </div>
     </div>
     <html><head></head><body><p>docker安装rabbitmq</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">docker pull rabbitmq:management<br><br><br><br>docker run -itd –-name rabbitmq <br>-v /opt/rabbitmq/etc/:/etc/rabbitmq <br>-v /opt/rabbitmq/lib/:/var/lib/rabbitmq <br>-v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -p 5672:5672 -p 15672:15672 --restart always -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234   181d<br><br><br>docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always -v /opt/rabbitmq/etc/:/etc/rabbitmq -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d<br><br>启动命令 <br><br>docker run -d  --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always  -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">docker pull rabbitmq:management<br><br><br><br><span class="hljs-comment">#docker run -itd –-name rabbitmq </span><br><span class="hljs-comment">#-v /opt/rabbitmq/etc/:/etc/rabbitmq </span><br><span class="hljs-comment">#-v /opt/rabbitmq/lib/:/var/lib/rabbitmq </span><br><span class="hljs-comment">#-v /opt/rabbitmq/log/:/var/log/rabbitmq -p 5672:5672 -p 15672:15672 --restart always -e #RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234   181d</span><br><br><br><span class="hljs-comment">#docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always -v /opt/rabbitmq/etc/:/etc/rabbitmq #-v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/log/:/var/log/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke #-e RABBITMQ_DEFAULT_PASS=hanke.1234  181d</span><br><br>启动命令 <br><br>docker run -d  --name rabbitmq -p 5672:5672 -p 15672:15672 --restart always  -v /opt/rabbitmq/lib/:/var/lib/rabbitmq -v /opt/rabbitmq/<span class="hljs-built_in">log</span>/:/var/<span class="hljs-built_in">log</span>/rabbitmq -e RABBITMQ_DEFAULT_USER=hanke -e RABBITMQ_DEFAULT_PASS=hanke.1234  181d<br><br>如果报错, 试试yum update <br>如果touch rabbitmq.config失败, 试试手动touch该文件<br><br>如果服务启动成功了但是访问15672时还是报错<br>rabbitmq-plugins <span class="hljs-built_in">enable</span> rabbitmq_management<br>rabbitmqctl start_app<br>可以参考<br></code></pre></td></tr></tbody></table></figure>
 
-
-
-
-
+<p><a href="https://blog.csdn.net/weixin_43641651/article/details/89848530?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43641651/article/details/89848530?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.edu_weight</a></p>
 <p>问题 一个目录挂载 一直提示没有权限 </p>
 <p>想把/etc/rabbitmq挂载到/opt/rabbitmq/etc下, 这个还没想好怎么办</p>
 <p>-v /opt/rabbitmq/etc:/etc/rabbitmq</p>
@@ -236,6 +233,8 @@
   
   <div class="post-guide">
     <div class="item left">
+        
+          <a href="/2020/07/30/Nginx/">Nginx</a>
         
     </div>
     <div class="item right">
